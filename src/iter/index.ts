@@ -1,31 +1,166 @@
 import IterResult from '../iterresult'
-import { ParsedOptions, freqIsDailyOrGreater, QueryMethodTypes } from '../types'
-import { combine, fromOrdinal, MAXYEAR } from '../dateutil'
+import {
+  freqIsDailyOrGreater,
+  Frequency,
+  Options,
+  ParsedOptions,
+  QueryMethodTypes,
+} from '../types'
+import {
+  combine,
+  daysBetween,
+  fromOrdinal,
+  MAXYEAR,
+  monthsBetween,
+  weeksBetween,
+  yearsBetween,
+} from '../dateutil'
 import Iterinfo from '../iterinfo/index'
 import { RRule } from '../rrule'
 import { buildTimeset } from '../parseoptions'
-import { notEmpty, includes, isPresent } from '../helpers'
+import { includes, isPresent, notEmpty } from '../helpers'
 import { DateWithZone } from '../datewithzone'
 import { buildPoslist } from './poslist'
-import { Time, DateTime } from '../datetime'
+import { DateTime, Time } from '../datetime'
+
+const OPTIMISABLE_FREQUENCIES_SET = new Set([
+  Frequency.YEARLY,
+  Frequency.MONTHLY,
+  Frequency.WEEKLY,
+  Frequency.DAILY,
+])
+
+function optimiseOptions<M extends QueryMethodTypes>(
+  iterResult: IterResult<M>,
+  parsedOptions: ParsedOptions,
+  origOptions: Partial<Options>
+) {
+  const {
+    freq,
+    count,
+    bymonth,
+    bysetpos,
+    bymonthday,
+    byyearday,
+    byweekno,
+    byhour,
+    byminute,
+    bysecond,
+    byeaster,
+    interval = 1,
+  } = origOptions
+  const { method, minDate } = iterResult
+  const { dtstart } = parsedOptions
+  let optimisedDtStart = dtstart
+
+  if (
+    method === 'before' ||
+    !minDate ||
+    minDate < dtstart ||
+    !OPTIMISABLE_FREQUENCIES_SET.has(freq) ||
+    count ||
+    bymonth ||
+    bysetpos ||
+    bymonthday ||
+    byyearday ||
+    byweekno ||
+    byhour ||
+    byminute ||
+    bysecond ||
+    byeaster
+  ) {
+    return parsedOptions
+  }
+
+  switch (freq) {
+    case Frequency.DAILY: {
+      const diffDays = Math.abs(daysBetween(minDate, dtstart))
+      const intervalsInDiff = Math.floor(diffDays / interval)
+
+      if (intervalsInDiff < 2) {
+        break
+      }
+
+      optimisedDtStart = new Date(
+        new Date(dtstart).setDate(
+          dtstart.getDate() + (intervalsInDiff - 1) * interval
+        )
+      )
+      break
+    }
+    case Frequency.WEEKLY: {
+      const diffWeeks = Math.abs(weeksBetween(minDate, dtstart))
+      const intervalsInDiff = Math.floor(diffWeeks / interval)
+
+      if (intervalsInDiff < 2) {
+        break
+      }
+
+      optimisedDtStart = new Date(
+        new Date(dtstart).setDate(
+          dtstart.getDate() + (intervalsInDiff - 1) * interval * 7
+        )
+      )
+      break
+    }
+    case Frequency.MONTHLY: {
+      const diffMonths = Math.abs(monthsBetween(minDate, dtstart))
+      const intervalsInDiff = Math.floor(diffMonths / interval)
+
+      if (intervalsInDiff < 2) {
+        break
+      }
+
+      const resultDate = new Date(dtstart)
+
+      optimisedDtStart = new Date(
+        resultDate.setMonth(
+          resultDate.getMonth() + (intervalsInDiff - 1) * interval
+        )
+      )
+      break
+    }
+    case Frequency.YEARLY: {
+      const diffYears = Math.abs(yearsBetween(minDate, dtstart))
+      const intervalsInDiff = Math.floor(diffYears / interval)
+
+      if (intervalsInDiff < 2) {
+        break
+      }
+
+      const resultDate = new Date(dtstart)
+
+      optimisedDtStart = new Date(
+        resultDate.setFullYear(
+          resultDate.getFullYear() + (intervalsInDiff - 1) * interval
+        )
+      )
+      break
+    }
+  }
+
+  return { ...parsedOptions, dtstart: optimisedDtStart }
+}
 
 export function iter<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
-  options: ParsedOptions
+  parsedOptions: ParsedOptions,
+  origOptions: Partial<Options>
 ) {
-  const { dtstart, freq, interval, until, bysetpos } = options
+  parsedOptions = optimiseOptions(iterResult, parsedOptions, origOptions)
+  const { freq, dtstart, interval, until, bysetpos } = parsedOptions
 
-  let count = options.count
+  let count = parsedOptions.count
   if (count === 0 || interval === 0) {
     return emitResult(iterResult)
   }
 
   const counterDate = DateTime.fromDate(dtstart)
 
-  const ii = new Iterinfo(options)
+  const ii = new Iterinfo(parsedOptions)
   ii.rebuild(counterDate.year, counterDate.month)
 
-  let timeset = makeTimeset(ii, counterDate, options)
+  let timeset = makeTimeset(ii, counterDate, parsedOptions)
 
   for (;;) {
     const [dayset, start, end] = ii.getdayset(freq)(
@@ -34,7 +169,7 @@ export function iter<M extends QueryMethodTypes>(
       counterDate.day
     )
 
-    const filtered = removeFilteredDays(dayset, start, end, ii, options)
+    const filtered = removeFilteredDays(dayset, start, end, ii, parsedOptions)
 
     if (notEmpty(bysetpos)) {
       const poslist = buildPoslist(bysetpos, timeset, start, end, ii, dayset)
@@ -46,7 +181,7 @@ export function iter<M extends QueryMethodTypes>(
         }
 
         if (res >= dtstart) {
-          const rezonedDate = rezoneIfNeeded(res, options)
+          const rezonedDate = rezoneIfNeeded(res, parsedOptions)
           if (!iterResult.accept(rezonedDate)) {
             return emitResult(iterResult)
           }
@@ -75,7 +210,7 @@ export function iter<M extends QueryMethodTypes>(
           }
 
           if (res >= dtstart) {
-            const rezonedDate = rezoneIfNeeded(res, options)
+            const rezonedDate = rezoneIfNeeded(res, parsedOptions)
             if (!iterResult.accept(rezonedDate)) {
               return emitResult(iterResult)
             }
@@ -90,12 +225,12 @@ export function iter<M extends QueryMethodTypes>(
         }
       }
     }
-    if (options.interval === 0) {
+    if (parsedOptions.interval === 0) {
       return emitResult(iterResult)
     }
 
     // Handle frequency and interval
-    counterDate.add(options, filtered)
+    counterDate.add(parsedOptions, filtered)
 
     if (counterDate.year > MAXYEAR) {
       return emitResult(iterResult)

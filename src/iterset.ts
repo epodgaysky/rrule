@@ -60,7 +60,7 @@ export function iterSet<M extends QueryMethodTypes>(
   }
 
   _rrule.forEach(function (rrule) {
-    iter(iterResult, rrule.options)
+    iter(iterResult, rrule.options, rrule.origOptions)
   })
 
   const res = iterResult._result

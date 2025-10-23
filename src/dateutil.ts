@@ -27,6 +27,11 @@ export const MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 export const ONE_DAY = 1000 * 60 * 60 * 24
 
 /**
+ * Number of milliseconds of one week
+ */
+export const ONE_WEEK = ONE_DAY * 7
+
+/**
  * @see: <http://docs.python.org/library/datetime.html#datetime.MAXYEAR>
  */
 export const MAXYEAR = 9999
@@ -94,6 +99,76 @@ export const daysBetween = function (date1: Date, date2: Date) {
 
   // Convert back to days and return
   return Math.round(differencems / ONE_DAY)
+}
+
+export const weeksBetween = (date1: Date, date2: Date) => {
+  const diffInMs = date2.getTime() - date1.getTime()
+  const diffInWeeks = diffInMs / ONE_WEEK
+
+  return Math.round(diffInWeeks / ONE_WEEK)
+}
+
+export const monthsBetween = (date1: Date, date2: Date) => {
+  if (date2 <= date1) {
+    ;[date1, date2] = [date2, date1]
+  }
+
+  const months =
+    (date2.getFullYear() - date1.getFullYear()) * 12 +
+    (date2.getMonth() - date1.getMonth())
+
+  const dayDiff = date2.getDate() - date1.getDate()
+  const daysInEndMonth = new Date(
+    date2.getFullYear(),
+    date2.getMonth() + 1,
+    0
+  ).getDate()
+  const fractional = dayDiff / daysInEndMonth
+  const totalMonths = months + fractional
+
+  return Math.round(totalMonths * 10) / 10
+}
+
+export const yearsBetween = (startDate: Date, endDate: Date) => {
+  if (endDate <= startDate) {
+    ;[startDate, endDate] = [endDate, startDate]
+  }
+
+  let years = endDate.getFullYear() - startDate.getFullYear()
+  let months = endDate.getMonth() - startDate.getMonth()
+  let dayDiff = endDate.getDate() - startDate.getDate()
+
+  if (months < 0) {
+    years--
+    months += 12
+  }
+
+  if (dayDiff < 0) {
+    months--
+
+    if (months < 0) {
+      years--
+      months += 12
+    }
+
+    const daysInPrevMonth = new Date(
+      startDate.getFullYear(),
+      startDate.getMonth() + 1,
+      0
+    ).getDate()
+    dayDiff = daysInPrevMonth + dayDiff
+  }
+
+  const daysInEndMonth = new Date(
+    endDate.getFullYear(),
+    endDate.getMonth() + 1,
+    0
+  ).getDate()
+  const fractionalMonth = dayDiff / daysInEndMonth
+  const fractionalYear = (months + fractionalMonth) / 12
+  const totalYears = years + fractionalYear
+
+  return Math.round(totalYears * 10) / 10
 }
 
 /**
