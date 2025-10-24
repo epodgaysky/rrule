@@ -1,20 +1,11 @@
 import IterResult from '../iterresult'
 import {
   freqIsDailyOrGreater,
-  Frequency,
   Options,
   ParsedOptions,
   QueryMethodTypes,
 } from '../types'
-import {
-  combine,
-  daysBetween,
-  fromOrdinal,
-  MAXYEAR,
-  monthsBetween,
-  weeksBetween,
-  yearsBetween,
-} from '../dateutil'
+import { combine, fromOrdinal, MAXYEAR } from '../dateutil'
 import Iterinfo from '../iterinfo/index'
 import { RRule } from '../rrule'
 import { buildTimeset } from '../parseoptions'
@@ -22,125 +13,7 @@ import { includes, isPresent, notEmpty } from '../helpers'
 import { DateWithZone } from '../datewithzone'
 import { buildPoslist } from './poslist'
 import { DateTime, Time } from '../datetime'
-
-const OPTIMISABLE_FREQUENCIES_SET = new Set([
-  Frequency.YEARLY,
-  Frequency.MONTHLY,
-  Frequency.WEEKLY,
-  Frequency.DAILY,
-])
-
-function optimiseOptions<M extends QueryMethodTypes>(
-  iterResult: IterResult<M>,
-  parsedOptions: ParsedOptions,
-  origOptions: Partial<Options>
-) {
-  const {
-    freq,
-    count,
-    bymonth,
-    bysetpos,
-    bymonthday,
-    byyearday,
-    byweekno,
-    byhour,
-    byminute,
-    bysecond,
-    byeaster,
-    interval = 1,
-  } = origOptions
-  const { method, minDate } = iterResult
-  const { dtstart } = parsedOptions
-  let optimisedDtStart = dtstart
-
-  if (
-    method === 'before' ||
-    !minDate ||
-    minDate < dtstart ||
-    !OPTIMISABLE_FREQUENCIES_SET.has(freq) ||
-    count ||
-    bymonth ||
-    bysetpos ||
-    bymonthday ||
-    byyearday ||
-    byweekno ||
-    byhour ||
-    byminute ||
-    bysecond ||
-    byeaster
-  ) {
-    return parsedOptions
-  }
-
-  switch (freq) {
-    case Frequency.DAILY: {
-      const diffDays = Math.abs(daysBetween(minDate, dtstart))
-      const intervalsInDiff = Math.floor(diffDays / interval)
-
-      if (intervalsInDiff < 2) {
-        break
-      }
-
-      optimisedDtStart = new Date(
-        new Date(dtstart).setDate(
-          dtstart.getDate() + (intervalsInDiff - 1) * interval
-        )
-      )
-      break
-    }
-    case Frequency.WEEKLY: {
-      const diffWeeks = Math.abs(weeksBetween(minDate, dtstart))
-      const intervalsInDiff = Math.floor(diffWeeks / interval)
-
-      if (intervalsInDiff < 2) {
-        break
-      }
-
-      optimisedDtStart = new Date(
-        new Date(dtstart).setDate(
-          dtstart.getDate() + (intervalsInDiff - 1) * interval * 7
-        )
-      )
-      break
-    }
-    case Frequency.MONTHLY: {
-      const diffMonths = Math.abs(monthsBetween(minDate, dtstart))
-      const intervalsInDiff = Math.floor(diffMonths / interval)
-
-      if (intervalsInDiff < 2) {
-        break
-      }
-
-      const resultDate = new Date(dtstart)
-
-      optimisedDtStart = new Date(
-        resultDate.setMonth(
-          resultDate.getMonth() + (intervalsInDiff - 1) * interval
-        )
-      )
-      break
-    }
-    case Frequency.YEARLY: {
-      const diffYears = Math.abs(yearsBetween(minDate, dtstart))
-      const intervalsInDiff = Math.floor(diffYears / interval)
-
-      if (intervalsInDiff < 2) {
-        break
-      }
-
-      const resultDate = new Date(dtstart)
-
-      optimisedDtStart = new Date(
-        resultDate.setFullYear(
-          resultDate.getFullYear() + (intervalsInDiff - 1) * interval
-        )
-      )
-      break
-    }
-  }
-
-  return { ...parsedOptions, dtstart: optimisedDtStart }
-}
+import { optimiseOptions } from './optimiseOptions'
 
 export function iter<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
