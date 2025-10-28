@@ -1,94 +1,41 @@
+import { DateTime, DurationUnit } from 'luxon'
+
 import { Frequency, Options, ParsedOptions, QueryMethodTypes } from '../types'
-import {
-  daysBetween,
-  monthsBetween,
-  weeksBetween,
-  yearsBetween,
-} from '../dateutil'
 import IterResult from '../iterresult'
 
-export type ShortenDtstart = (
-  minDate: Date,
+const UNIT_BY_FREQUENCY: Record<Frequency, Required<DurationUnit>> = {
+  [Frequency.YEARLY]: 'year',
+  [Frequency.MONTHLY]: 'month',
+  [Frequency.WEEKLY]: 'week',
+  [Frequency.DAILY]: 'day',
+  [Frequency.HOURLY]: 'hour',
+  [Frequency.MINUTELY]: 'minute',
+  [Frequency.SECONDLY]: 'second',
+}
+
+const optimize = (
+  frequency: Frequency,
   dtstart: Date,
-  interval: number
-) => Date
+  interval: number,
+  minDate?: Date,
+  maxDate?: Date,
+  count?: number
+) => {
+  const frequencyUnit = UNIT_BY_FREQUENCY[frequency]
+  const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate)
+  const dtstartDateTime = DateTime.fromJSDate(dtstart)
 
-const SHORTEN_DTSTART_DEFAULT: ShortenDtstart = (
-  minDate: Date,
-  dtstart: Date
-) => dtstart
-const INTERVALS_IN_DIFF_TO_OPTIMISE = 2
-const FREQUENCIES_SET_TO_OPTIMISE = new Set([
-  Frequency.YEARLY,
-  Frequency.MONTHLY,
-  Frequency.WEEKLY,
-  Frequency.DAILY,
-])
+  const diff = Math.abs(
+    dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
+  )
+  const intervalsInDiff = Math.floor(diff / interval)
 
-const DTSTART_SHORTENING_STRATEGY: Record<Frequency, ShortenDtstart> = {
-  [Frequency.DAILY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffDays = Math.abs(daysBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffDays / interval)
-
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    return new Date(
-      new Date(dtstart).setDate(
-        dtstart.getDate() + (intervalsInDiff - 1) * interval
-      )
-    )
-  },
-  [Frequency.WEEKLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffWeeks = Math.abs(weeksBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffWeeks / interval)
-
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    return new Date(
-      new Date(dtstart).setDate(
-        dtstart.getDate() + (intervalsInDiff - 1) * interval * 7
-      )
-    )
-  },
-  [Frequency.MONTHLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffMonths = Math.abs(monthsBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffMonths / interval)
-
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    const resultDate = new Date(dtstart)
-
-    return new Date(
-      resultDate.setMonth(
-        resultDate.getMonth() + (intervalsInDiff - 1) * interval
-      )
-    )
-  },
-  [Frequency.YEARLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffYears = Math.abs(yearsBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffYears / interval)
-
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    const resultDate = new Date(dtstart)
-
-    return new Date(
-      resultDate.setFullYear(
-        resultDate.getFullYear() + (intervalsInDiff - 1) * interval
-      )
-    )
-  },
-  [Frequency.HOURLY]: SHORTEN_DTSTART_DEFAULT,
-  [Frequency.MINUTELY]: SHORTEN_DTSTART_DEFAULT,
-  [Frequency.SECONDLY]: SHORTEN_DTSTART_DEFAULT,
+  return {
+    dtstart: dtstartDateTime
+      .plus({ [frequencyUnit]: intervalsInDiff })
+      .toJSDate(),
+    count: count ? count - intervalsInDiff : count,
+  }
 }
 
 export function optimiseOptions<M extends QueryMethodTypes>(
@@ -110,14 +57,13 @@ export function optimiseOptions<M extends QueryMethodTypes>(
     byeaster,
     interval = 1,
   } = origOptions
-  const { method, minDate } = iterResult
+  const { minDate, maxDate } = iterResult
   const { dtstart } = parsedOptions
 
   if (
-    method === 'before' ||
-    !minDate ||
-    minDate < dtstart ||
-    !FREQUENCIES_SET_TO_OPTIMISE.has(freq) ||
+    (!minDate && !maxDate) ||
+    (minDate && minDate < dtstart) ||
+    (maxDate && maxDate < dtstart) ||
     count ||
     bymonth ||
     bysetpos ||
@@ -134,6 +80,6 @@ export function optimiseOptions<M extends QueryMethodTypes>(
 
   return {
     ...parsedOptions,
-    dtstart: DTSTART_SHORTENING_STRATEGY[freq](minDate, dtstart, interval),
+    ...optimize(freq, dtstart, interval, minDate, maxDate, count),
   }
 }
