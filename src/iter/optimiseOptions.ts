@@ -25,16 +25,26 @@ const optimize = (
   const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate)
   const dtstartDateTime = DateTime.fromJSDate(dtstart)
 
-  const diff = Math.abs(
-    dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
-  )
-  const intervalsInDiff = Math.floor(diff / interval)
+  try {
+    const diff = Math.abs(
+      dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
+    )
+    const intervalsInDiff = Math.floor(diff / interval)
 
-  return {
-    dtstart: dtstartDateTime
-      .plus({ [frequencyUnit]: intervalsInDiff })
-      .toJSDate(),
-    count: count ? count - intervalsInDiff : count,
+    return {
+      dtstart: dtstartDateTime
+        .plus({ [frequencyUnit]: intervalsInDiff })
+        .toJSDate(),
+      count: count ? count - intervalsInDiff : count,
+    }
+  } catch (error) {
+    console.error(
+      'UNEXPECTED ERROR: ',
+      frequency,
+      frequencyUnit,
+      minDateTime,
+      dtstartDateTime
+    )
   }
 }
 
