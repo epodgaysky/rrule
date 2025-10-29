@@ -2,6 +2,8 @@ import { DateTime, DurationUnit } from 'luxon'
 
 import { Frequency, Options, ParsedOptions, QueryMethodTypes } from '../types'
 import IterResult from '../iterresult'
+import { notEmpty } from '../helpers'
+import { Weekday } from '../weekday'
 
 const UNIT_BY_FREQUENCY: Record<Frequency, Required<DurationUnit>> = {
   [Frequency.YEARLY]: 'year',
@@ -19,29 +21,54 @@ const optimize = (
   interval: number,
   minDate?: Date,
   maxDate?: Date,
-  count?: number
+  count?: number,
+  exdateHash?: { [k: number]: boolean },
+  evalExdate?: (after: Date, before: Date) => void
 ) => {
   const frequencyUnit = UNIT_BY_FREQUENCY[frequency]
-  const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate)
-  const dtstartDateTime = DateTime.fromJSDate(dtstart)
+  const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate, {
+    zone: 'UTC',
+  })
+  const dtstartDateTime = DateTime.fromJSDate(dtstart, { zone: 'UTC' })
 
   const diff = Math.abs(
     dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
   )
   const intervalsInDiff = Math.floor(diff / interval)
 
+  let optimisedDtstart = dtstartDateTime.plus({
+    [frequencyUnit]: interval * intervalsInDiff,
+  })
+  let optimisedCount = count ? count - intervalsInDiff : count
+
+  if (evalExdate) {
+    evalExdate(
+      optimisedDtstart.minus({ millisecond: 1 }).toJSDate(),
+      optimisedDtstart.plus({ millisecond: 1 }).toJSDate()
+    )
+  }
+
+  while (exdateHash?.[optimisedDtstart.toMillis()]) {
+    optimisedDtstart = optimisedDtstart.minus({ [frequencyUnit]: interval })
+    optimisedCount++
+  }
+
+  if (optimisedCount <= 0) {
+    return { dtstart, count }
+  }
+
   return {
-    dtstart: dtstartDateTime
-      .plus({ [frequencyUnit]: intervalsInDiff })
-      .toJSDate(),
-    count: count ? count - intervalsInDiff : count,
+    dtstart: optimisedDtstart.toJSDate(),
+    count: optimisedCount,
   }
 }
 
 export function optimiseOptions<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
   parsedOptions: ParsedOptions,
-  origOptions: Partial<Options>
+  origOptions: Partial<Options>,
+  exdateHash?: { [k: number]: boolean },
+  evalExdate?: (after: Date, before: Date) => void
 ) {
   const {
     freq,
@@ -54,33 +81,49 @@ export function optimiseOptions<M extends QueryMethodTypes>(
     byhour,
     byminute,
     bysecond,
+    byweekday,
     byeaster,
     interval = 1,
   } = origOptions
-  const { minDate, maxDate } = iterResult
+  const { minDate, maxDate, method, args } = iterResult
   const { dtstart } = parsedOptions
+  const { skipOptimisation } = args
 
   if (
-    !freq ||
+    skipOptimisation ||
+    method === 'all' ||
     (!minDate && !maxDate) ||
-    (minDate && minDate < dtstart) ||
-    (maxDate && maxDate < dtstart) ||
-    count ||
-    bymonth ||
-    bysetpos ||
-    bymonthday ||
-    byyearday ||
-    byweekno ||
-    byhour ||
-    byminute ||
-    bysecond ||
-    byeaster
+    (minDate && minDate <= dtstart) ||
+    (maxDate && maxDate <= dtstart) ||
+    notEmpty(bymonth) ||
+    notEmpty(bysetpos) ||
+    notEmpty(bymonthday) ||
+    notEmpty(byyearday) ||
+    notEmpty(byweekno) ||
+    notEmpty(byhour) ||
+    notEmpty(byminute) ||
+    notEmpty(bysecond) ||
+    notEmpty(bysecond) ||
+    notEmpty(byeaster) ||
+    (notEmpty(byweekday) &&
+      (Array.isArray(byweekday) ? byweekday : [byweekday]).some(
+        (byweekdayInstance) => byweekdayInstance instanceof Weekday
+      ))
   ) {
     return parsedOptions
   }
 
   return {
     ...parsedOptions,
-    ...optimize(freq, dtstart, interval, minDate, maxDate, count),
+    ...optimize(
+      freq,
+      dtstart,
+      interval,
+      minDate,
+      maxDate,
+      count,
+      exdateHash,
+      evalExdate
+    ),
   }
 }

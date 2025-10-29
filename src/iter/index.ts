@@ -18,9 +18,17 @@ import { optimiseOptions } from './optimiseOptions'
 export function iter<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
   parsedOptions: ParsedOptions,
-  origOptions: Partial<Options>
+  origOptions: Partial<Options>,
+  _exdateHash?: { [k: number]: boolean },
+  evalExdate?: (after: Date, before: Date) => void
 ) {
-  parsedOptions = optimiseOptions(iterResult, parsedOptions, origOptions)
+  parsedOptions = optimiseOptions(
+    iterResult,
+    parsedOptions,
+    origOptions,
+    _exdateHash,
+    evalExdate
+  )
   const { freq, dtstart, interval, until, bysetpos } = parsedOptions
 
   let count = parsedOptions.count
