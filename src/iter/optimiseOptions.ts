@@ -39,7 +39,8 @@ const optimize = (
   let optimisedDtstart = dtstartDateTime.plus({
     [frequencyUnit]: interval * intervalsInDiff,
   })
-  let optimisedCount = count ? count - intervalsInDiff : count
+
+  let decrementCountFor = intervalsInDiff
 
   if (evalExdate) {
     evalExdate(
@@ -50,16 +51,17 @@ const optimize = (
 
   while (exdateHash?.[optimisedDtstart.toMillis()]) {
     optimisedDtstart = optimisedDtstart.minus({ [frequencyUnit]: interval })
-    optimisedCount++
+    decrementCountFor--
   }
 
-  if (optimisedCount <= 0) {
-    return { dtstart, count }
+  if (count !== undefined) {
+    count = count - decrementCountFor
+    count = count < 0 ? 0 : count
   }
 
   return {
     dtstart: optimisedDtstart.toJSDate(),
-    count: optimisedCount,
+    count,
   }
 }
 

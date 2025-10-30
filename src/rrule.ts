@@ -68,6 +68,7 @@ export class RRule implements QueryMethods {
   public _cache: Cache | null
   public origOptions: Partial<Options>
   public options: ParsedOptions
+  private skipOptimisation = false
 
   // RRule class 'constants'
 
@@ -144,6 +145,13 @@ export class RRule implements QueryMethods {
   }
 
   /**
+   * Disables naive optimization for simple cases
+   */
+  disableOptimization(): void {
+    this.skipOptimisation = true
+  }
+
+  /**
    * @param {Function} iterator - optional function that will be called
    * on each date that is added. It can return false
    * to stop the iteration.
@@ -174,8 +182,7 @@ export class RRule implements QueryMethods {
     after: Date,
     before: Date,
     inc = false,
-    iterator?: (d: Date, len: number) => boolean,
-    skipOptimisation = false
+    iterator?: (d: Date, len: number) => boolean
   ): Date[] {
     if (!isValidDate(after) || !isValidDate(before)) {
       throw new Error('Invalid date passed in to RRule.between')
@@ -184,7 +191,7 @@ export class RRule implements QueryMethods {
       before,
       after,
       inc,
-      skipOptimisation,
+      skipOptimisation: this.skipOptimisation,
     }
 
     if (iterator) {
@@ -206,11 +213,11 @@ export class RRule implements QueryMethods {
    *
    * @return Date or null
    */
-  before(dt: Date, inc = false, skipOptimisation = false): Date | null {
+  before(dt: Date, inc = false): Date | null {
     if (!isValidDate(dt)) {
       throw new Error('Invalid date passed in to RRule.before')
     }
-    const args = { dt: dt, inc: inc, skipOptimisation }
+    const args = { dt: dt, inc: inc, skipOptimisation: this.skipOptimisation }
     let result = this._cacheGet('before', args)
     if (result === false) {
       result = this._iter(new IterResult('before', args))
@@ -226,11 +233,11 @@ export class RRule implements QueryMethods {
    *
    * @return Date or null
    */
-  after(dt: Date, inc = false, skipOptimisation = false): Date | null {
+  after(dt: Date, inc = false): Date | null {
     if (!isValidDate(dt)) {
       throw new Error('Invalid date passed in to RRule.after')
     }
-    const args = { dt: dt, inc: inc, skipOptimisation }
+    const args = { dt: dt, inc: inc, skipOptimisation: this.skipOptimisation }
     let result = this._cacheGet('after', args)
     if (result === false) {
       result = this._iter(new IterResult('after', args))

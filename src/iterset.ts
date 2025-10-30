@@ -18,11 +18,9 @@ export function iterSet<M extends QueryMethodTypes>(
 
   function evalExdate(after: Date, before: Date) {
     _exrule.forEach(function (rrule) {
-      rrule
-        .between(after, before, true, undefined, true)
-        .forEach(function (date) {
-          _exdateHash[Number(date)] = true
-        })
+      rrule.between(after, before, true, undefined).forEach(function (date) {
+        _exdateHash[Number(date)] = true
+      })
     })
   }
 

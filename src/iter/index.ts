@@ -19,14 +19,14 @@ export function iter<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
   parsedOptions: ParsedOptions,
   origOptions: Partial<Options>,
-  _exdateHash?: { [k: number]: boolean },
+  exdateHash?: { [k: number]: boolean },
   evalExdate?: (after: Date, before: Date) => void
 ) {
   parsedOptions = optimiseOptions(
     iterResult,
     parsedOptions,
     origOptions,
-    _exdateHash,
+    exdateHash,
     evalExdate
   )
   const { freq, dtstart, interval, until, bysetpos } = parsedOptions
