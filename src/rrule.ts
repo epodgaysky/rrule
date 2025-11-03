@@ -68,6 +68,7 @@ export class RRule implements QueryMethods {
   public _cache: Cache | null
   public origOptions: Partial<Options>
   public options: ParsedOptions
+  private skipOptimisation = false
 
   // RRule class 'constants'
 
@@ -144,6 +145,13 @@ export class RRule implements QueryMethods {
   }
 
   /**
+   * Disables naive optimization for simple cases
+   */
+  disableOptimization(): void {
+    this.skipOptimisation = true
+  }
+
+  /**
    * @param {Function} iterator - optional function that will be called
    * on each date that is added. It can return false
    * to stop the iteration.
@@ -183,6 +191,7 @@ export class RRule implements QueryMethods {
       before,
       after,
       inc,
+      skipOptimisation: this.skipOptimisation,
     }
 
     if (iterator) {
@@ -208,7 +217,7 @@ export class RRule implements QueryMethods {
     if (!isValidDate(dt)) {
       throw new Error('Invalid date passed in to RRule.before')
     }
-    const args = { dt: dt, inc: inc }
+    const args = { dt: dt, inc: inc, skipOptimisation: this.skipOptimisation }
     let result = this._cacheGet('before', args)
     if (result === false) {
       result = this._iter(new IterResult('before', args))
@@ -228,7 +237,7 @@ export class RRule implements QueryMethods {
     if (!isValidDate(dt)) {
       throw new Error('Invalid date passed in to RRule.after')
     }
-    const args = { dt: dt, inc: inc }
+    const args = { dt: dt, inc: inc, skipOptimisation: this.skipOptimisation }
     let result = this._cacheGet('after', args)
     if (result === false) {
       result = this._iter(new IterResult('after', args))

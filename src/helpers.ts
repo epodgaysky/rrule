@@ -114,8 +114,8 @@ export const divmod = function (a: number, b: number) {
   return { div: Math.floor(a / b), mod: pymod(a, b) }
 }
 
-export const empty = function <T>(obj: T[] | null | undefined) {
-  return !isPresent(obj) || obj.length === 0
+export const empty = function <T>(obj: T | T[] | null | undefined) {
+  return !isPresent(obj) || (Array.isArray(obj) && obj.length === 0)
 }
 
 /**
@@ -125,7 +125,9 @@ export const empty = function <T>(obj: T[] | null | undefined) {
  * the fact that in Python an empty list's/tuple's
  * boolean value is False, whereas in JS it's true
  */
-export const notEmpty = function <T>(obj: T[] | null | undefined): obj is T[] {
+export const notEmpty = function <T>(
+  obj: T | T[] | null | undefined
+): obj is T[] | T {
   return !empty(obj)
 }
 

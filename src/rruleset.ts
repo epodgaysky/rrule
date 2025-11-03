@@ -81,6 +81,7 @@ export class RRuleSet extends RRule {
    * @param {RRule}
    */
   exrule(rrule: RRule) {
+    rrule.disableOptimization()
     _addRule(rrule, this._exrule)
   }
 

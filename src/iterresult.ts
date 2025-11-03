@@ -9,6 +9,7 @@ export interface IterArgs {
   before: Date
   after: Date
   dt: Date
+  skipOptimisation: boolean
   _value: Date | Date[] | null
 }
 

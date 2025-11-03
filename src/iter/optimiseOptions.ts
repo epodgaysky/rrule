@@ -1,100 +1,76 @@
+import { DateTime, DurationUnit } from 'luxon'
+
 import { Frequency, Options, ParsedOptions, QueryMethodTypes } from '../types'
-import {
-  daysBetween,
-  monthsBetween,
-  weeksBetween,
-  yearsBetween,
-} from '../dateutil'
 import IterResult from '../iterresult'
+import { notEmpty } from '../helpers'
+import { Weekday } from '../weekday'
 
-export type ShortenDtstart = (
-  minDate: Date,
+const UNIT_BY_FREQUENCY: Record<Frequency, Required<DurationUnit>> = {
+  [Frequency.YEARLY]: 'year',
+  [Frequency.MONTHLY]: 'month',
+  [Frequency.WEEKLY]: 'week',
+  [Frequency.DAILY]: 'day',
+  [Frequency.HOURLY]: 'hour',
+  [Frequency.MINUTELY]: 'minute',
+  [Frequency.SECONDLY]: 'second',
+}
+
+const optimize = (
+  frequency: Frequency,
   dtstart: Date,
-  interval: number
-) => Date
+  interval: number,
+  minDate?: Date,
+  maxDate?: Date,
+  count?: number,
+  exdateHash?: { [k: number]: boolean },
+  evalExdate?: (after: Date, before: Date) => void
+) => {
+  const frequencyUnit = UNIT_BY_FREQUENCY[frequency]
+  const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate, {
+    zone: 'UTC',
+  })
+  const dtstartDateTime = DateTime.fromJSDate(dtstart, { zone: 'UTC' })
 
-const SHORTEN_DTSTART_DEFAULT: ShortenDtstart = (
-  minDate: Date,
-  dtstart: Date
-) => dtstart
-const INTERVALS_IN_DIFF_TO_OPTIMISE = 2
-const FREQUENCIES_SET_TO_OPTIMISE = new Set([
-  Frequency.YEARLY,
-  Frequency.MONTHLY,
-  Frequency.WEEKLY,
-  Frequency.DAILY,
-])
+  const diff = Math.abs(
+    dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
+  )
+  const intervalsInDiff = Math.floor(diff / interval)
 
-const DTSTART_SHORTENING_STRATEGY: Record<Frequency, ShortenDtstart> = {
-  [Frequency.DAILY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffDays = Math.abs(daysBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffDays / interval)
+  let optimisedDtstart = dtstartDateTime.plus({
+    [frequencyUnit]: interval * intervalsInDiff,
+  })
 
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
+  let decrementCountFor = intervalsInDiff
 
-    return new Date(
-      new Date(dtstart).setDate(
-        dtstart.getDate() + (intervalsInDiff - 1) * interval
-      )
+  if (evalExdate) {
+    evalExdate(
+      optimisedDtstart.minus({ millisecond: 1 }).toJSDate(),
+      optimisedDtstart.plus({ millisecond: 1 }).toJSDate()
     )
-  },
-  [Frequency.WEEKLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffWeeks = Math.abs(weeksBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffWeeks / interval)
+  }
 
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
+  while (exdateHash?.[optimisedDtstart.toMillis()]) {
+    optimisedDtstart = optimisedDtstart.minus({ [frequencyUnit]: interval })
+    decrementCountFor--
+  }
 
-    return new Date(
-      new Date(dtstart).setDate(
-        dtstart.getDate() + (intervalsInDiff - 1) * interval * 7
-      )
-    )
-  },
-  [Frequency.MONTHLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffMonths = Math.abs(monthsBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffMonths / interval)
+  if (count !== undefined) {
+    count = count - decrementCountFor
+    count = count < 0 ? 0 : count
+  }
 
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    const resultDate = new Date(dtstart)
-
-    return new Date(
-      resultDate.setMonth(
-        resultDate.getMonth() + (intervalsInDiff - 1) * interval
-      )
-    )
-  },
-  [Frequency.YEARLY]: (minDate: Date, dtstart: Date, interval: number) => {
-    const diffYears = Math.abs(yearsBetween(minDate, dtstart))
-    const intervalsInDiff = Math.floor(diffYears / interval)
-
-    if (intervalsInDiff < INTERVALS_IN_DIFF_TO_OPTIMISE) {
-      return dtstart
-    }
-
-    const resultDate = new Date(dtstart)
-
-    return new Date(
-      resultDate.setFullYear(
-        resultDate.getFullYear() + (intervalsInDiff - 1) * interval
-      )
-    )
-  },
-  [Frequency.HOURLY]: SHORTEN_DTSTART_DEFAULT,
-  [Frequency.MINUTELY]: SHORTEN_DTSTART_DEFAULT,
-  [Frequency.SECONDLY]: SHORTEN_DTSTART_DEFAULT,
+  return {
+    dtstart: optimisedDtstart.toJSDate(),
+    count,
+  }
 }
 
 export function optimiseOptions<M extends QueryMethodTypes>(
   iterResult: IterResult<M>,
   parsedOptions: ParsedOptions,
-  origOptions: Partial<Options>
+  origOptions: Partial<Options>,
+  exdateHash?: { [k: number]: boolean },
+  evalExdate?: (after: Date, before: Date) => void
 ) {
   const {
     freq,
@@ -107,33 +83,49 @@ export function optimiseOptions<M extends QueryMethodTypes>(
     byhour,
     byminute,
     bysecond,
+    byweekday,
     byeaster,
     interval = 1,
   } = origOptions
-  const { method, minDate } = iterResult
+  const { minDate, maxDate, method, args } = iterResult
   const { dtstart } = parsedOptions
+  const { skipOptimisation } = args
 
   if (
-    method === 'before' ||
-    !minDate ||
-    minDate < dtstart ||
-    !FREQUENCIES_SET_TO_OPTIMISE.has(freq) ||
-    count ||
-    bymonth ||
-    bysetpos ||
-    bymonthday ||
-    byyearday ||
-    byweekno ||
-    byhour ||
-    byminute ||
-    bysecond ||
-    byeaster
+    skipOptimisation ||
+    method === 'all' ||
+    (!minDate && !maxDate) ||
+    (minDate && minDate <= dtstart) ||
+    (maxDate && maxDate <= dtstart) ||
+    notEmpty(bymonth) ||
+    notEmpty(bysetpos) ||
+    notEmpty(bymonthday) ||
+    notEmpty(byyearday) ||
+    notEmpty(byweekno) ||
+    notEmpty(byhour) ||
+    notEmpty(byminute) ||
+    notEmpty(bysecond) ||
+    notEmpty(bysecond) ||
+    notEmpty(byeaster) ||
+    (notEmpty(byweekday) &&
+      (Array.isArray(byweekday) ? byweekday : [byweekday]).some(
+        (byweekdayInstance) => byweekdayInstance instanceof Weekday
+      ))
   ) {
     return parsedOptions
   }
 
   return {
     ...parsedOptions,
-    dtstart: DTSTART_SHORTENING_STRATEGY[freq](minDate, dtstart, interval),
+    ...optimize(
+      freq,
+      dtstart,
+      interval,
+      minDate,
+      maxDate,
+      count,
+      exdateHash,
+      evalExdate
+    ),
   }
 }
