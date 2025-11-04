@@ -1,0 +1,53 @@
+name: 🚀
+
+concurrency:
+  group: post-merge-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build-and-publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: MontyD/package-json-updated-action@1.0.1
+        id: version-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - if: steps.version-check.outputs.has-updated
+        uses: pnpm/action-setup@v4
+
+      - if: steps.version-check.outputs.has-updated
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - if: steps.version-check.outputs.has-updated
+        name: install
+        run: pnpm install --frozen-lockfile
+
+      - if: steps.version-check.outputs.has-updated
+        name: build
+        run: pnpm run build
+
+      - if: steps.version-check.outputs.has-updated
+        name: publish
+        run: pnpm publish --no-git-checks

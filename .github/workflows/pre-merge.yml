@@ -1,0 +1,48 @@
+name: 🧪
+
+concurrency:
+  group: pre-merge-${{ github.ref }}
+  cancel-in-progress: true
+
+on: [pull_request]
+
+jobs:
+  pre-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: lint
+        run: pnpm exec oxlint
+
+      - name: format
+        run: pnpm exec oxfmt --check
+
+      - name: build
+        run: pnpm build
+
+      - name: test (canada)
+        run: LANG=en_CA TZ=America/Vancouver pnpm test
+
+      - name: test (usa)
+        run: LANG=en_US TZ=America/Los_Angeles pnpm test
+
+      - name: test (kenya)
+        run: LANG=sw_KE TZ=Africa/Nairobi pnpm test
+
+      - name: test (kiribati)
+        run: LANG=en_KI TZ=Pacific/Kiritimati pnpm test
+
+      - name: test (japan)
+        run: LANG=jp_JP TZ=Asia/Tokyo pnpm test
