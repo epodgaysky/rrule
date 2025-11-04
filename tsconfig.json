@@ -13,6 +13,7 @@
     "esModuleInterop": true,
     // "isolatedModules": true,
     "moduleDetection": "force",
+    "noEmit": true,
     // "noFallthroughCasesInSwitch": true,
     // "noImplicitAny": false,
     // "noImplicitOverride": true,

@@ -20,16 +20,9 @@
     "url": "git://github.com/jakubroztocil/rrule.git"
   },
   "scripts": {
-    "prebuild": "yarn clean",
-    "prepublish": "yarn build",
-    "build": "yarn lint && yarn format-check && tsc -b tsconfig.build.json && webpack && tsc dist/esm/**/*.d.ts",
-    "clean": "rm -rf dist/",
-    "lint": "yarn eslint . --fix --config .eslintrc.js",
-    "format": "yarn prettier --write .",
-    "format-check": "yarn prettier --check .",
-    "run-ts": "TS_NODE_PROJECT=tsconfig.json node --loader ts-node/esm",
-    "test": "jest **/*.test.ts",
-    "test-ci": "yarn run-ts ./node_modules/.bin/nyc jest **/*.test.ts"
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "nyc jest **/*.test.ts"
   },
   "nyc": {
     "extension": [
@@ -53,6 +46,7 @@
     "jest": "^29.7.0",
     "mockdate": "^3.0.5",
     "nyc": "^15.1.0",
+    "rimraf": "^6.1.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.9.3"
   },
@@ -60,7 +54,6 @@
     "dist",
     "README.md"
   ],
-  "peerDependencies": {},
   "dependencies": {
     "luxon": "^3.7.2",
     "tslib": "^2.4.0"
