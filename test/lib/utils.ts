@@ -15,7 +15,7 @@ export function isNumber(maybeNumber: any): maybeNumber is number {
 
 const assertDatesEqual = function (
   actual: Date | Date[],
-  expected: Date | Date[]
+  expected: Date | Date[],
 ) {
   if (!(actual instanceof Array)) actual = [actual]
   if (!(expected instanceof Array)) expected = [expected]
@@ -66,7 +66,7 @@ export const testRecurring = function (
   msg: string,
   testObj: TestObj | RRule | (() => TestObj),
   expectedDates: Date | Date[],
-  itFunc: jest.Func = it
+  itFunc: jest.Func = it,
 ) {
   let rule: RRule
   let method: 'all' | 'before' | 'between' | 'after'
@@ -122,7 +122,7 @@ export const testRecurring = function (
 
     if (TEST_CTX.ALSO_TESTSUBSECOND_PRECISION) {
       expect(actualDates.map(extractTime)).toEqual(
-        expectedDates.map(extractTime)
+        expectedDates.map(extractTime),
       )
     }
 
@@ -169,18 +169,18 @@ export const testRecurring = function (
           rule.between(
             expectedDates[0],
             expectedDates[expectedDates.length - 1],
-            true
+            true,
           ),
-          expectedDates
+          expectedDates,
         )
 
         assertDatesEqual(
           rule.between(
             expectedDates[0],
             expectedDates[expectedDates.length - 1],
-            false
+            false,
           ),
-          expectedDates.slice(1, expectedDates.length - 1)
+          expectedDates.slice(1, expectedDates.length - 1),
         )
       }
 
@@ -218,7 +218,7 @@ testRecurring.skip = function ([description]: [string]) {
 export function expectedDate(
   startDate: Date,
   currentLocalDate: Date,
-  targetZone: string
+  targetZone: string,
 ): Date {
   return dateInTimeZone(startDate, targetZone)
 }

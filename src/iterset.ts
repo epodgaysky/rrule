@@ -11,7 +11,7 @@ export function iterSet<M extends QueryMethodTypes>(
   _exrule: RRule[],
   _rdate: Date[],
   _exdate: Date[],
-  tzid: string | undefined
+  tzid: string | undefined,
 ) {
   const _exdateHash: { [k: number]: boolean } = {}
   const _accept = iterResult.accept

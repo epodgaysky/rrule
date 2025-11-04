@@ -25,7 +25,7 @@ it('returns the time of the date', () => {
 
 it('rejects invalid dates', () => {
   expect(() => new DateWithZone(new Date(undefined))).toThrow(
-    'Invalid date passed to DateWithZone'
+    'Invalid date passed to DateWithZone',
   )
 })
 
@@ -47,8 +47,8 @@ describe('rezonedDate', () => {
       expectedDate(
         new Date(Date.parse('2010-10-05T11:00:00')),
         currentLocalDate,
-        targetZone
-      )
+        targetZone,
+      ),
     )
 
     resetMockDate()

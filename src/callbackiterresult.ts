@@ -12,7 +12,7 @@ export default class CallbackIterResult extends IterResult<'all' | 'between'> {
   constructor(
     method: 'all' | 'between',
     args: Partial<IterArgs>,
-    iterator: Iterator
+    iterator: Iterator,
   ) {
     super(method, args)
 

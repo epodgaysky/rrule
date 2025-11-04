@@ -57,7 +57,7 @@ export function parseOptions(options: Partial<Options>) {
       const v = opts.bysetpos[i]
       if (v === 0 || !(v >= -366 && v <= 366)) {
         throw new Error(
-          'bysetpos must be between 1 and 366,' + ' or between -366 and -1'
+          'bysetpos must be between 1 and 366,' + ' or between -366 and -1',
         )
       }
     }

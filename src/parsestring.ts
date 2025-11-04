@@ -15,7 +15,7 @@ export function parseDtstart(line: string) {
   const options: Partial<Options> = {}
 
   const dtstartWithZone = /DTSTART(?:;TZID=([^:=]+?))?(?::|=)([^;\s]+)/i.exec(
-    line
+    line,
   )
 
   if (!dtstartWithZone) {

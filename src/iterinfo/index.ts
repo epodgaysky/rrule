@@ -39,7 +39,7 @@ export default class Iterinfo {
         yearlen,
         mrange,
         wdaymask,
-        options
+        options,
       )
     }
 
@@ -139,7 +139,7 @@ export default class Iterinfo {
 
   mtimeset(hour: number, minute: number, _: number, millisecond: number) {
     const set = this.options.bysecond.map(
-      (second) => new Time(hour, minute, second, millisecond)
+      (second) => new Time(hour, minute, second, millisecond),
     )
 
     sort(set)
@@ -166,7 +166,7 @@ export default class Iterinfo {
   }
 
   gettimeset(
-    freq: Frequency.HOURLY | Frequency.MINUTELY | Frequency.SECONDLY
+    freq: Frequency.HOURLY | Frequency.MINUTELY | Frequency.SECONDLY,
   ): (h: number, m: number, s: number, ms: number) => Time[] {
     switch (freq) {
       case Frequency.HOURLY:

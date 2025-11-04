@@ -138,15 +138,15 @@ function buildRule(s: string, options: Partial<RRuleStrOptions>) {
     groomRruleOptions(
       val,
       val.dtstart || options.dtstart || dtstart,
-      val.tzid || options.tzid || tzid
+      val.tzid || options.tzid || tzid,
     ),
-    noCache
+    noCache,
   )
 }
 
 export function rrulestr(
   s: string,
-  options: Partial<RRuleStrOptions> = {}
+  options: Partial<RRuleStrOptions> = {},
 ): RRule | RRuleSet {
   return buildRule(s, initializeOptions(options))
 }
@@ -154,7 +154,7 @@ export function rrulestr(
 function groomRruleOptions(
   val: Partial<Options>,
   dtstart?: Date | null,
-  tzid?: string | null
+  tzid?: string | null,
 ) {
   return {
     ...val,
@@ -167,7 +167,7 @@ function initializeOptions(options: Partial<RRuleStrOptions>) {
   const invalid: string[] = []
   const keys = Object.keys(options) as (keyof typeof options)[]
   const defaultKeys = Object.keys(
-    DEFAULT_OPTIONS
+    DEFAULT_OPTIONS,
   ) as (keyof typeof DEFAULT_OPTIONS)[]
 
   keys.forEach(function (key) {

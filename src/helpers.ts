@@ -5,7 +5,7 @@
 import { ALL_WEEKDAYS, WeekdayStr } from './weekday'
 
 export const isPresent = function <T>(
-  value?: T | null | undefined
+  value?: T | null | undefined,
 ): value is T {
   return value !== null && value !== undefined
 }
@@ -60,7 +60,7 @@ export const toArray = function <T>(item: T | T[]): T[] {
 export function padStart(
   item: string | number,
   targetLength: number,
-  padString = ' '
+  padString = ' ',
 ) {
   const str = String(item)
   targetLength = targetLength >> 0
@@ -126,7 +126,7 @@ export const empty = function <T>(obj: T | T[] | null | undefined) {
  * boolean value is False, whereas in JS it's true
  */
 export const notEmpty = function <T>(
-  obj: T | T[] | null | undefined
+  obj: T | T[] | null | undefined,
 ): obj is T[] | T {
   return !empty(obj)
 }

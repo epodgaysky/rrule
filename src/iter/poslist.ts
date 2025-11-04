@@ -9,7 +9,7 @@ export function buildPoslist(
   start: number,
   end: number,
   ii: Iterinfo,
-  dayset: (number | null)[]
+  dayset: (number | null)[],
 ) {
   const poslist: Date[] = []
 

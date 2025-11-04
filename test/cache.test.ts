@@ -64,7 +64,7 @@ describe('Cache', () => {
         ...args,
         /** 1ms later than the args used for the insert */
         after: new Date('2021-01-01T00:00:00.001+00:00'),
-      })
+      }),
     ).toBe(false)
   })
 

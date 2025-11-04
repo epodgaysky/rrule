@@ -20,14 +20,14 @@ export function iter<M extends QueryMethodTypes>(
   parsedOptions: ParsedOptions,
   origOptions: Partial<Options>,
   exdateHash?: { [k: number]: boolean },
-  evalExdate?: (after: Date, before: Date) => void
+  evalExdate?: (after: Date, before: Date) => void,
 ) {
   parsedOptions = optimiseOptions(
     iterResult,
     parsedOptions,
     origOptions,
     exdateHash,
-    evalExdate
+    evalExdate,
   )
   const { freq, dtstart, interval, until, bysetpos } = parsedOptions
 
@@ -47,7 +47,7 @@ export function iter<M extends QueryMethodTypes>(
     const [dayset, start, end] = ii.getdayset(freq)(
       counterDate.year,
       counterDate.month,
-      counterDate.day
+      counterDate.day,
     )
 
     const filtered = removeFilteredDays(dayset, start, end, ii, parsedOptions)
@@ -122,7 +122,7 @@ export function iter<M extends QueryMethodTypes>(
         counterDate.hour,
         counterDate.minute,
         counterDate.second,
-        0
+        0,
       )
     }
 
@@ -133,7 +133,7 @@ export function iter<M extends QueryMethodTypes>(
 function isFiltered(
   ii: Iterinfo,
   currentDay: number,
-  options: ParsedOptions
+  options: ParsedOptions,
 ): boolean {
   const {
     bymonth,
@@ -177,7 +177,7 @@ function removeFilteredDays(
   start: number,
   end: number,
   ii: Iterinfo,
-  options: ParsedOptions
+  options: ParsedOptions,
 ) {
   let filtered = false
   for (let dayCounter = start; dayCounter < end; dayCounter++) {
@@ -194,7 +194,7 @@ function removeFilteredDays(
 function makeTimeset(
   ii: Iterinfo,
   counterDate: DateTime,
-  options: ParsedOptions
+  options: ParsedOptions,
 ): Time[] | null {
   const { freq, byhour, byminute, bysecond } = options
 
@@ -220,6 +220,6 @@ function makeTimeset(
     counterDate.hour,
     counterDate.minute,
     counterDate.second,
-    counterDate.millisecond
+    counterDate.millisecond,
   )
 }

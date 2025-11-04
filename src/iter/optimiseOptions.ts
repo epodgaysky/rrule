@@ -23,7 +23,7 @@ const optimize = (
   maxDate?: Date,
   count?: number,
   exdateHash?: { [k: number]: boolean },
-  evalExdate?: (after: Date, before: Date) => void
+  evalExdate?: (after: Date, before: Date) => void,
 ) => {
   const frequencyUnit = UNIT_BY_FREQUENCY[frequency]
   const minDateTime = DateTime.fromJSDate(minDate ? minDate : maxDate, {
@@ -32,7 +32,7 @@ const optimize = (
   const dtstartDateTime = DateTime.fromJSDate(dtstart, { zone: 'UTC' })
 
   const diff = Math.abs(
-    dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit)
+    dtstartDateTime.diff(minDateTime, frequencyUnit).get(frequencyUnit),
   )
   const intervalsInDiff = Math.floor(diff / interval)
 
@@ -45,7 +45,7 @@ const optimize = (
   if (evalExdate) {
     evalExdate(
       optimisedDtstart.minus({ millisecond: 1 }).toJSDate(),
-      optimisedDtstart.plus({ millisecond: 1 }).toJSDate()
+      optimisedDtstart.plus({ millisecond: 1 }).toJSDate(),
     )
   }
 
@@ -70,7 +70,7 @@ export function optimiseOptions<M extends QueryMethodTypes>(
   parsedOptions: ParsedOptions,
   origOptions: Partial<Options>,
   exdateHash?: { [k: number]: boolean },
-  evalExdate?: (after: Date, before: Date) => void
+  evalExdate?: (after: Date, before: Date) => void,
 ) {
   const {
     freq,
@@ -109,7 +109,7 @@ export function optimiseOptions<M extends QueryMethodTypes>(
     notEmpty(byeaster) ||
     (notEmpty(byweekday) &&
       (Array.isArray(byweekday) ? byweekday : [byweekday]).some(
-        (byweekdayInstance) => byweekdayInstance instanceof Weekday
+        (byweekdayInstance) => byweekdayInstance instanceof Weekday,
       ))
   ) {
     return parsedOptions
@@ -125,7 +125,7 @@ export function optimiseOptions<M extends QueryMethodTypes>(
       maxDate,
       count,
       exdateHash,
-      evalExdate
+      evalExdate,
     ),
   }
 }

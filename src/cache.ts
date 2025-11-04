@@ -6,7 +6,7 @@ export type CacheKeys = 'before' | 'after' | 'between'
 
 function argsMatch(
   left: IterArgs[keyof IterArgs] | undefined,
-  right: IterArgs[keyof IterArgs] | undefined
+  right: IterArgs[keyof IterArgs] | undefined,
 ) {
   if (Array.isArray(left)) {
     if (!Array.isArray(right)) return false
@@ -35,7 +35,7 @@ export class Cache {
   public _cacheAdd(
     what: CacheKeys | 'all',
     value: Date[] | Date | null,
-    args?: Partial<IterArgs>
+    args?: Partial<IterArgs>,
   ) {
     if (value) {
       value = value instanceof Date ? clone(value) : cloneDates(value)
@@ -58,7 +58,7 @@ export class Cache {
    */
   public _cacheGet(
     what: CacheKeys | 'all',
-    args?: Partial<IterArgs>
+    args?: Partial<IterArgs>,
   ): Date | Date[] | false | null {
     let cached: Date | Date[] | false | null = false
     const argsKeys = args ? (Object.keys(args) as (keyof IterArgs)[]) : []
@@ -100,7 +100,7 @@ export class Cache {
     return isArray(cached)
       ? cloneDates(cached)
       : cached instanceof Date
-      ? clone(cached)
-      : cached
+        ? clone(cached)
+        : cached
   }
 }

@@ -70,7 +70,7 @@ describe('RRule', function () {
       count: 3,
       bymonthday: [28],
     }),
-    [datetime(2013, 1, 28), datetime(2013, 2, 28), datetime(2013, 3, 28)]
+    [datetime(2013, 1, 28), datetime(2013, 2, 28), datetime(2013, 3, 28)],
   )
 
   // =============================================================================
@@ -87,7 +87,7 @@ describe('RRule', function () {
       method: 'before',
       args: [parse('19970905T090000')],
     },
-    datetime(1997, 9, 4, 9, 0)
+    datetime(1997, 9, 4, 9, 0),
   )
 
   testRecurring(
@@ -100,7 +100,7 @@ describe('RRule', function () {
       method: 'before',
       args: [parse('19970905T090000'), true],
     },
-    datetime(1997, 9, 5, 9, 0)
+    datetime(1997, 9, 5, 9, 0),
   )
 
   testRecurring(
@@ -113,7 +113,7 @@ describe('RRule', function () {
       method: 'after',
       args: [parse('19970904T090000')],
     },
-    datetime(1997, 9, 5, 9, 0)
+    datetime(1997, 9, 5, 9, 0),
   )
 
   testRecurring(
@@ -126,7 +126,7 @@ describe('RRule', function () {
       method: 'after',
       args: [parse('19970904T090000'), true],
     },
-    datetime(1997, 9, 4, 9, 0)
+    datetime(1997, 9, 4, 9, 0),
   )
 
   testRecurring(
@@ -143,7 +143,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -162,7 +162,7 @@ describe('RRule', function () {
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 5, 9, 0),
       datetime(1997, 9, 6, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -183,7 +183,7 @@ describe('RRule', function () {
       expectedDate(datetime(2022, 6, 28, 9, 0), undefined, 'Europe/London'),
       expectedDate(datetime(2022, 7, 5, 9, 0), undefined, 'Europe/London'),
       expectedDate(datetime(2022, 7, 12, 9, 0), undefined, 'Europe/London'),
-    ]
+    ],
   )
 
   testRecurring(
@@ -197,7 +197,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1998, 9, 2, 9, 0),
       datetime(1999, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -212,7 +212,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1999, 9, 2, 9, 0),
       datetime(2001, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -227,7 +227,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(2097, 9, 2, 9, 0),
       datetime(2197, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -242,7 +242,7 @@ describe('RRule', function () {
       datetime(1998, 1, 2, 9, 0),
       datetime(1998, 3, 2, 9, 0),
       datetime(1999, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -257,7 +257,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 10, 1, 9, 0),
       datetime(1997, 10, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -273,7 +273,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 9, 0),
       datetime(1998, 1, 7, 9, 0),
       datetime(1998, 3, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -288,7 +288,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -303,7 +303,7 @@ describe('RRule', function () {
       datetime(1997, 12, 25, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 12, 31, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -318,7 +318,7 @@ describe('RRule', function () {
       datetime(1997, 10, 2, 9, 0),
       datetime(1998, 3, 31, 9, 0),
       datetime(1998, 10, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -334,7 +334,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -350,7 +350,7 @@ describe('RRule', function () {
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 29, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -366,7 +366,7 @@ describe('RRule', function () {
       datetime(1998, 1, 15, 9, 0),
       datetime(1998, 1, 20, 9, 0),
       datetime(1998, 3, 12, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -382,7 +382,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 2, 3, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -399,7 +399,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 3, 3, 9, 0),
       datetime(2001, 3, 1, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -415,7 +415,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -431,7 +431,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -448,7 +448,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 4, 10, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -465,7 +465,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 4, 10, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -480,7 +480,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 9, 0),
       datetime(1998, 5, 12, 9, 0),
       datetime(1998, 5, 13, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -498,7 +498,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 9, 0),
       datetime(1999, 1, 4, 9, 0),
       datetime(2000, 1, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -516,7 +516,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1998, 12, 27, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -532,7 +532,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1999, 1, 3, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -542,7 +542,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 9, 0),
       datetime(1999, 4, 4, 9, 0),
       datetime(2000, 4, 23, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -557,7 +557,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 9, 0),
       datetime(1999, 4, 5, 9, 0),
       datetime(2000, 4, 24, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -572,7 +572,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 9, 0),
       datetime(1999, 4, 3, 9, 0),
       datetime(2000, 4, 22, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -588,7 +588,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 9, 0),
       datetime(2004, 12, 27, 9, 0),
       datetime(2009, 12, 28, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -603,7 +603,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1998, 9, 2, 6, 0),
       datetime(1998, 9, 2, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -618,7 +618,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1998, 9, 2, 9, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -633,7 +633,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1998, 9, 2, 9, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -649,7 +649,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1998, 9, 2, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -665,7 +665,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1998, 9, 2, 6, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -681,7 +681,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -698,7 +698,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -715,7 +715,7 @@ describe('RRule', function () {
       datetime(1997, 11, 15, 18, 0),
       datetime(1998, 2, 15, 6, 0),
       datetime(1998, 11, 15, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -728,7 +728,7 @@ describe('RRule', function () {
       method: 'between',
       args: [parse('20160101T000000'), parse('20160101T000000'), true],
     },
-    [datetime(2016, 1, 1)]
+    [datetime(2016, 1, 1)],
   )
 
   testRecurring(
@@ -741,7 +741,7 @@ describe('RRule', function () {
       method: 'between',
       args: [parse('20160101T000000'), parse('20160101T000000'), true],
     },
-    [datetime(2016, 1, 1)]
+    [datetime(2016, 1, 1)],
   )
 
   testRecurring(
@@ -755,7 +755,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 10, 2, 9, 0),
       datetime(1997, 11, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -770,7 +770,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 11, 2, 9, 0),
       datetime(1998, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -785,7 +785,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1999, 3, 2, 9, 0),
       datetime(2000, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -800,7 +800,7 @@ describe('RRule', function () {
       datetime(1998, 1, 2, 9, 0),
       datetime(1998, 3, 2, 9, 0),
       datetime(1999, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -815,7 +815,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 10, 1, 9, 0),
       datetime(1997, 10, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -831,7 +831,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 9, 0),
       datetime(1998, 1, 7, 9, 0),
       datetime(1998, 3, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -846,7 +846,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -861,7 +861,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 25, 9, 0),
       datetime(1997, 10, 7, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -876,7 +876,7 @@ describe('RRule', function () {
       datetime(1997, 9, 11, 9, 0),
       datetime(1997, 9, 16, 9, 0),
       datetime(1997, 10, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -892,7 +892,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -908,7 +908,7 @@ describe('RRule', function () {
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 29, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -924,7 +924,7 @@ describe('RRule', function () {
       datetime(1998, 1, 15, 9, 0),
       datetime(1998, 1, 20, 9, 0),
       datetime(1998, 3, 12, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -940,7 +940,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 2, 3, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -957,7 +957,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 3, 3, 9, 0),
       datetime(2001, 3, 1, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -973,7 +973,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -989,7 +989,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1006,7 +1006,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 4, 10, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1023,7 +1023,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 4, 10, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1038,7 +1038,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 9, 0),
       datetime(1998, 5, 12, 9, 0),
       datetime(1998, 5, 13, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1056,7 +1056,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 9, 0),
       datetime(1999, 1, 4, 9, 0),
       datetime(2000, 1, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1074,7 +1074,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1998, 12, 27, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1090,7 +1090,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1999, 1, 3, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1106,7 +1106,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 9, 0),
       datetime(2004, 12, 27, 9, 0),
       datetime(2009, 12, 28, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1121,7 +1121,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 9, 0),
       datetime(1999, 4, 4, 9, 0),
       datetime(2000, 4, 23, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1136,7 +1136,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 9, 0),
       datetime(1999, 4, 5, 9, 0),
       datetime(2000, 4, 24, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1151,7 +1151,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 9, 0),
       datetime(1999, 4, 3, 9, 0),
       datetime(2000, 4, 22, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1166,7 +1166,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 10, 2, 6, 0),
       datetime(1997, 10, 2, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1181,7 +1181,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1997, 10, 2, 9, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1196,7 +1196,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 10, 2, 9, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1212,7 +1212,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1997, 10, 2, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1228,7 +1228,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 10, 2, 6, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1244,7 +1244,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1261,7 +1261,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1278,7 +1278,7 @@ describe('RRule', function () {
       datetime(1997, 9, 13, 18, 0),
       datetime(1997, 9, 17, 6, 0),
       datetime(1997, 10, 13, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1294,7 +1294,7 @@ describe('RRule', function () {
       datetime(2014, 1, 31, 9, 0),
       datetime(2014, 2, 28, 9, 0),
       datetime(2014, 3, 31, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1310,7 +1310,7 @@ describe('RRule', function () {
       datetime(2016, 1, 31, 9, 0),
       datetime(2016, 2, 29, 9, 0),
       datetime(2016, 3, 31, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1324,7 +1324,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 9, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1339,7 +1339,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 16, 9, 0),
       datetime(1997, 9, 30, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1354,7 +1354,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1998, 1, 20, 9, 0),
       datetime(1998, 6, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1369,7 +1369,7 @@ describe('RRule', function () {
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 13, 9, 0),
       datetime(1998, 1, 20, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1384,7 +1384,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 10, 1, 9, 0),
       datetime(1997, 10, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1400,7 +1400,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 9, 0),
       datetime(1998, 1, 7, 9, 0),
       datetime(1998, 3, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1415,7 +1415,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1430,7 +1430,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1449,7 +1449,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1465,7 +1465,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1481,7 +1481,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 2, 3, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1498,7 +1498,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 3, 3, 9, 0),
       datetime(2001, 3, 1, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1514,7 +1514,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1530,7 +1530,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1547,7 +1547,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 1, 1, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1564,7 +1564,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 1, 1, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1579,7 +1579,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 9, 0),
       datetime(1998, 5, 12, 9, 0),
       datetime(1998, 5, 13, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1597,7 +1597,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 9, 0),
       datetime(1999, 1, 4, 9, 0),
       datetime(2000, 1, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1615,7 +1615,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1998, 12, 27, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1631,7 +1631,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1999, 1, 3, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1647,7 +1647,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 9, 0),
       datetime(2004, 12, 27, 9, 0),
       datetime(2009, 12, 28, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1662,7 +1662,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 9, 0),
       datetime(1999, 4, 4, 9, 0),
       datetime(2000, 4, 23, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1677,7 +1677,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 9, 0),
       datetime(1999, 4, 5, 9, 0),
       datetime(2000, 4, 24, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1692,7 +1692,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 9, 0),
       datetime(1999, 4, 3, 9, 0),
       datetime(2000, 4, 22, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1707,7 +1707,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 9, 9, 6, 0),
       datetime(1997, 9, 9, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1722,7 +1722,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1997, 9, 9, 9, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1737,7 +1737,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 9, 9, 9, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1753,7 +1753,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1997, 9, 9, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1769,7 +1769,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 9, 9, 6, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1785,7 +1785,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1802,7 +1802,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1819,7 +1819,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 9, 4, 6, 0),
       datetime(1997, 9, 9, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1833,7 +1833,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1848,7 +1848,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 6, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1863,7 +1863,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 12, 3, 9, 0),
       datetime(1998, 3, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1878,7 +1878,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 2, 9, 0),
       datetime(1998, 1, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1893,7 +1893,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 10, 1, 9, 0),
       datetime(1997, 10, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1909,7 +1909,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 9, 0),
       datetime(1998, 1, 7, 9, 0),
       datetime(1998, 3, 5, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1924,7 +1924,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1939,7 +1939,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1955,7 +1955,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1971,7 +1971,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 1, 6, 9, 0),
       datetime(1998, 1, 8, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -1987,7 +1987,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 2, 3, 9, 0),
       datetime(1998, 3, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2004,7 +2004,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 3, 3, 9, 0),
       datetime(2001, 3, 1, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2020,7 +2020,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2036,7 +2036,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 9, 0),
       datetime(1998, 4, 10, 9, 0),
       datetime(1998, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2053,7 +2053,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 1, 1, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2070,7 +2070,7 @@ describe('RRule', function () {
       datetime(1998, 7, 19, 9, 0),
       datetime(1999, 1, 1, 9, 0),
       datetime(1999, 7, 19, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2085,7 +2085,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 9, 0),
       datetime(1998, 5, 12, 9, 0),
       datetime(1998, 5, 13, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2103,7 +2103,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 9, 0),
       datetime(1999, 1, 4, 9, 0),
       datetime(2000, 1, 3, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2121,7 +2121,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1998, 12, 27, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2137,7 +2137,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 9, 0),
       datetime(1999, 1, 3, 9, 0),
       datetime(2000, 1, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2153,7 +2153,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 9, 0),
       datetime(2004, 12, 27, 9, 0),
       datetime(2009, 12, 28, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2168,7 +2168,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 9, 0),
       datetime(1999, 4, 4, 9, 0),
       datetime(2000, 4, 23, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2183,7 +2183,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 9, 0),
       datetime(1999, 4, 5, 9, 0),
       datetime(2000, 4, 24, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2198,7 +2198,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 9, 0),
       datetime(1999, 4, 3, 9, 0),
       datetime(2000, 4, 22, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2213,7 +2213,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 9, 3, 6, 0),
       datetime(1997, 9, 3, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2228,7 +2228,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1997, 9, 3, 9, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2243,7 +2243,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 9, 3, 9, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2259,7 +2259,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1997, 9, 3, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2275,7 +2275,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 9, 3, 6, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2291,7 +2291,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2308,7 +2308,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2325,7 +2325,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 15),
       datetime(1997, 9, 3, 6, 45),
       datetime(1997, 9, 3, 18, 15),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2339,7 +2339,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 10, 0),
       datetime(1997, 9, 2, 11, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2354,7 +2354,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 11, 0),
       datetime(1997, 9, 2, 13, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2369,7 +2369,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 10, 4, 10, 0),
       datetime(1997, 11, 5, 11, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2384,7 +2384,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 1, 0),
       datetime(1998, 1, 1, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2399,7 +2399,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 0, 0),
       datetime(1997, 9, 3, 1, 0),
       datetime(1997, 9, 3, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2415,7 +2415,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 0, 0),
       datetime(1998, 1, 5, 1, 0),
       datetime(1998, 1, 5, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2430,7 +2430,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 10, 0),
       datetime(1997, 9, 2, 11, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2445,7 +2445,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 10, 0),
       datetime(1997, 9, 2, 11, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2461,7 +2461,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 1, 0),
       datetime(1998, 1, 1, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2477,7 +2477,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 1, 0),
       datetime(1998, 1, 1, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2493,7 +2493,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 1, 0),
       datetime(1998, 1, 1, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2510,7 +2510,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 1, 0),
       datetime(1998, 1, 1, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2526,7 +2526,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 1, 0),
       datetime(1997, 12, 31, 2, 0),
       datetime(1997, 12, 31, 3, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2542,7 +2542,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 1, 0),
       datetime(1997, 12, 31, 2, 0),
       datetime(1997, 12, 31, 3, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2559,7 +2559,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 1, 0),
       datetime(1998, 4, 10, 2, 0),
       datetime(1998, 4, 10, 3, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2576,7 +2576,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 1, 0),
       datetime(1998, 4, 10, 2, 0),
       datetime(1998, 4, 10, 3, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2591,7 +2591,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 0, 0),
       datetime(1998, 5, 11, 1, 0),
       datetime(1998, 5, 11, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2607,7 +2607,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 0, 0),
       datetime(1997, 12, 29, 1, 0),
       datetime(1997, 12, 29, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2623,7 +2623,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0),
       datetime(1997, 12, 28, 1, 0),
       datetime(1997, 12, 28, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2639,7 +2639,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0),
       datetime(1997, 12, 28, 1, 0),
       datetime(1997, 12, 28, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2655,7 +2655,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 0, 0),
       datetime(1998, 12, 28, 1, 0),
       datetime(1998, 12, 28, 2, 0),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -2670,7 +2670,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 0, 0),
       datetime(1998, 4, 12, 1, 0),
       datetime(1998, 4, 12, 2, 0),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -2685,7 +2685,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 0, 0),
       datetime(1998, 4, 13, 1, 0),
       datetime(1998, 4, 13, 2, 0),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -2700,7 +2700,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 0, 0),
       datetime(1998, 4, 11, 1, 0),
       datetime(1998, 4, 11, 2, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2715,7 +2715,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 9, 3, 6, 0),
       datetime(1997, 9, 3, 18, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2730,7 +2730,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1997, 9, 2, 10, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2745,7 +2745,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 9, 2, 10, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2761,7 +2761,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1997, 9, 3, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2777,7 +2777,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 9, 3, 6, 0, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2793,7 +2793,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2810,7 +2810,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2827,7 +2827,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 15, 45),
       datetime(1997, 9, 2, 9, 45, 15),
       datetime(1997, 9, 2, 10, 15, 45),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2841,7 +2841,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 9, 1),
       datetime(1997, 9, 2, 9, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2856,7 +2856,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 9, 2),
       datetime(1997, 9, 2, 9, 4),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2871,7 +2871,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 10, 1),
       datetime(1997, 9, 4, 11, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2886,7 +2886,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 0, 1),
       datetime(1998, 1, 1, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2901,7 +2901,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 0, 0),
       datetime(1997, 9, 3, 0, 1),
       datetime(1997, 9, 3, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2917,7 +2917,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 0, 0),
       datetime(1998, 1, 5, 0, 1),
       datetime(1998, 1, 5, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2932,7 +2932,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 9, 1),
       datetime(1997, 9, 2, 9, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2947,7 +2947,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 2, 9, 1),
       datetime(1997, 9, 2, 9, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2963,7 +2963,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 0, 1),
       datetime(1998, 1, 1, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2979,7 +2979,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 0, 1),
       datetime(1998, 1, 1, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -2995,7 +2995,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 0, 1),
       datetime(1998, 1, 1, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3012,7 +3012,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0),
       datetime(1998, 1, 1, 0, 1),
       datetime(1998, 1, 1, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3028,7 +3028,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 0, 1),
       datetime(1997, 12, 31, 0, 2),
       datetime(1997, 12, 31, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3044,7 +3044,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 0, 1),
       datetime(1997, 12, 31, 0, 2),
       datetime(1997, 12, 31, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3061,7 +3061,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 0, 1),
       datetime(1998, 4, 10, 0, 2),
       datetime(1998, 4, 10, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3078,7 +3078,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 0, 1),
       datetime(1998, 4, 10, 0, 2),
       datetime(1998, 4, 10, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3093,7 +3093,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 0, 0),
       datetime(1998, 5, 11, 0, 1),
       datetime(1998, 5, 11, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3109,7 +3109,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 0, 0),
       datetime(1997, 12, 29, 0, 1),
       datetime(1997, 12, 29, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3125,7 +3125,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0),
       datetime(1997, 12, 28, 0, 1),
       datetime(1997, 12, 28, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3141,7 +3141,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0),
       datetime(1997, 12, 28, 0, 1),
       datetime(1997, 12, 28, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3157,7 +3157,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 0, 0),
       datetime(1998, 12, 28, 0, 1),
       datetime(1998, 12, 28, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3172,7 +3172,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 0, 0),
       datetime(1998, 4, 12, 0, 1),
       datetime(1998, 4, 12, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3187,7 +3187,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 0, 0),
       datetime(1998, 4, 13, 0, 1),
       datetime(1998, 4, 13, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3202,7 +3202,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 0, 0),
       datetime(1998, 4, 11, 0, 1),
       datetime(1998, 4, 11, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3217,7 +3217,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0),
       datetime(1997, 9, 2, 18, 1),
       datetime(1997, 9, 2, 18, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3232,7 +3232,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6),
       datetime(1997, 9, 2, 9, 18),
       datetime(1997, 9, 2, 10, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3247,7 +3247,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 9, 2, 9, 1, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3263,7 +3263,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6),
       datetime(1997, 9, 2, 18, 18),
       datetime(1997, 9, 3, 6, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3279,7 +3279,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 9, 2, 18, 1, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3295,7 +3295,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3312,7 +3312,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3328,7 +3328,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 15),
       datetime(1997, 9, 2, 9, 0, 45),
       datetime(1997, 9, 2, 9, 1, 15),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3342,7 +3342,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 0),
       datetime(1997, 9, 2, 9, 0, 1),
       datetime(1997, 9, 2, 9, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3357,7 +3357,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 0),
       datetime(1997, 9, 2, 9, 0, 2),
       datetime(1997, 9, 2, 9, 0, 4),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3372,7 +3372,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 0),
       datetime(1997, 9, 3, 10, 1, 1),
       datetime(1997, 9, 4, 11, 2, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3387,7 +3387,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0, 0),
       datetime(1998, 1, 1, 0, 0, 1),
       datetime(1998, 1, 1, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3402,7 +3402,7 @@ describe('RRule', function () {
       datetime(1997, 9, 3, 0, 0, 0),
       datetime(1997, 9, 3, 0, 0, 1),
       datetime(1997, 9, 3, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3418,7 +3418,7 @@ describe('RRule', function () {
       datetime(1998, 1, 5, 0, 0, 0),
       datetime(1998, 1, 5, 0, 0, 1),
       datetime(1998, 1, 5, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3433,7 +3433,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 0),
       datetime(1997, 9, 2, 9, 0, 1),
       datetime(1997, 9, 2, 9, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3448,7 +3448,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 0),
       datetime(1997, 9, 2, 9, 0, 1),
       datetime(1997, 9, 2, 9, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3464,7 +3464,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0, 0),
       datetime(1998, 1, 1, 0, 0, 1),
       datetime(1998, 1, 1, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3480,7 +3480,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0, 0),
       datetime(1998, 1, 1, 0, 0, 1),
       datetime(1998, 1, 1, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3496,7 +3496,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0, 0),
       datetime(1998, 1, 1, 0, 0, 1),
       datetime(1998, 1, 1, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3513,7 +3513,7 @@ describe('RRule', function () {
       datetime(1998, 1, 1, 0, 0, 0),
       datetime(1998, 1, 1, 0, 0, 1),
       datetime(1998, 1, 1, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3529,7 +3529,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 0, 0, 1),
       datetime(1997, 12, 31, 0, 0, 2),
       datetime(1997, 12, 31, 0, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3545,7 +3545,7 @@ describe('RRule', function () {
       datetime(1997, 12, 31, 0, 0, 1),
       datetime(1997, 12, 31, 0, 0, 2),
       datetime(1997, 12, 31, 0, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3562,7 +3562,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 0, 0, 1),
       datetime(1998, 4, 10, 0, 0, 2),
       datetime(1998, 4, 10, 0, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3579,7 +3579,7 @@ describe('RRule', function () {
       datetime(1998, 4, 10, 0, 0, 1),
       datetime(1998, 4, 10, 0, 0, 2),
       datetime(1998, 4, 10, 0, 0, 3),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3594,7 +3594,7 @@ describe('RRule', function () {
       datetime(1998, 5, 11, 0, 0, 0),
       datetime(1998, 5, 11, 0, 0, 1),
       datetime(1998, 5, 11, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3610,7 +3610,7 @@ describe('RRule', function () {
       datetime(1997, 12, 29, 0, 0, 0),
       datetime(1997, 12, 29, 0, 0, 1),
       datetime(1997, 12, 29, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3626,7 +3626,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0, 0),
       datetime(1997, 12, 28, 0, 0, 1),
       datetime(1997, 12, 28, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3642,7 +3642,7 @@ describe('RRule', function () {
       datetime(1997, 12, 28, 0, 0, 0),
       datetime(1997, 12, 28, 0, 0, 1),
       datetime(1997, 12, 28, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3658,7 +3658,7 @@ describe('RRule', function () {
       datetime(1998, 12, 28, 0, 0, 0),
       datetime(1998, 12, 28, 0, 0, 1),
       datetime(1998, 12, 28, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3673,7 +3673,7 @@ describe('RRule', function () {
       datetime(1998, 4, 12, 0, 0, 0),
       datetime(1998, 4, 12, 0, 0, 1),
       datetime(1998, 4, 12, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3688,7 +3688,7 @@ describe('RRule', function () {
       datetime(1998, 4, 13, 0, 0, 0),
       datetime(1998, 4, 13, 0, 0, 1),
       datetime(1998, 4, 13, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring.skip(
@@ -3703,7 +3703,7 @@ describe('RRule', function () {
       datetime(1998, 4, 11, 0, 0, 0),
       datetime(1998, 4, 11, 0, 0, 1),
       datetime(1998, 4, 11, 0, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3718,7 +3718,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 0),
       datetime(1997, 9, 2, 18, 0, 1),
       datetime(1997, 9, 2, 18, 0, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3733,7 +3733,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 0),
       datetime(1997, 9, 2, 9, 6, 1),
       datetime(1997, 9, 2, 9, 6, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3748,7 +3748,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0, 6),
       datetime(1997, 9, 2, 9, 0, 18),
       datetime(1997, 9, 2, 9, 1, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3764,7 +3764,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 0),
       datetime(1997, 9, 2, 18, 6, 1),
       datetime(1997, 9, 2, 18, 6, 2),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3780,7 +3780,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 0, 6),
       datetime(1997, 9, 2, 18, 0, 18),
       datetime(1997, 9, 2, 18, 1, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3796,7 +3796,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 6, 6),
       datetime(1997, 9, 2, 9, 6, 18),
       datetime(1997, 9, 2, 9, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3813,7 +3813,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 18, 6, 6),
       datetime(1997, 9, 2, 18, 6, 18),
       datetime(1997, 9, 2, 18, 18, 6),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3828,7 +3828,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3843,7 +3843,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3854,7 +3854,7 @@ describe('RRule', function () {
       dtstart: parse('19970902T090000'),
       until: parse('19970902T090000'),
     }),
-    [datetime(1997, 9, 2, 9, 0)]
+    [datetime(1997, 9, 2, 9, 0)],
   )
 
   testRecurring(
@@ -3865,7 +3865,7 @@ describe('RRule', function () {
       dtstart: parse('19970902T090000'),
       until: parse('19970901T090000'),
     }),
-    []
+    [],
   )
 
   testRecurring(
@@ -3880,7 +3880,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3897,7 +3897,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 7, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3914,7 +3914,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 14, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3924,7 +3924,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 0, 0),
       datetime(1997, 9, 3, 0, 0),
       datetime(1997, 9, 4, 0, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3938,7 +3938,7 @@ describe('RRule', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 3, 9, 0),
       datetime(1997, 9, 4, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -3950,7 +3950,7 @@ describe('RRule', function () {
       bymonthday: 31,
       dtstart: parse('99970902T090000'),
     }),
-    []
+    [],
   )
 
   testRecurring(
@@ -3960,7 +3960,7 @@ describe('RRule', function () {
       count: 1,
       dtstart: new Date(1420063200001),
     }),
-    [new Date(1420063200001)]
+    [new Date(1420063200001)],
   )
 
   testRecurring(
@@ -3971,7 +3971,7 @@ describe('RRule', function () {
       bysetpos: [-1, 1],
       dtstart: new Date(1356991200001),
     }),
-    [new Date(1356991200001)]
+    [new Date(1356991200001)],
   )
 
   it('testAfterBefore', function () {
@@ -4018,7 +4018,7 @@ describe('RRule', function () {
 
       const rrstr = rr.toString()
       expect(rrstr).toBe(
-        'DTSTART:20171017T003000Z\nRRULE:UNTIL=20171222T013000Z;FREQ=MONTHLY;INTERVAL=1;BYSETPOS=17;BYDAY=SU,MO,TU,WE,TH,FR,SA;WKST=SU;BYHOUR=11;BYMINUTE=0;BYSECOND=0'
+        'DTSTART:20171017T003000Z\nRRULE:UNTIL=20171222T013000Z;FREQ=MONTHLY;INTERVAL=1;BYSETPOS=17;BYDAY=SU,MO,TU,WE,TH,FR,SA;WKST=SU;BYHOUR=11;BYMINUTE=0;BYSECOND=0',
       )
       const newrr = RRule.fromString(rrstr)
       expect(rrstr).toBe(newrr.toString())
@@ -4045,7 +4045,7 @@ describe('RRule', function () {
 
   it('calculates daily recurrences correctly across DST boundaries', () => {
     const rrule = RRule.fromString(
-      'DTSTART=20181101T110000Z;UNTIL=20181106T110000Z;FREQ=DAILY'
+      'DTSTART=20181101T110000Z;UNTIL=20181106T110000Z;FREQ=DAILY',
     )
     expect(rrule.all()).toEqual([
       new Date('2018-11-01T11:00:00.000Z'),
@@ -4059,7 +4059,7 @@ describe('RRule', function () {
 
   it('calculates weekly recurrences correctly across DST boundaries', () => {
     const rrule = RRule.fromString(
-      'DTSTART=20181031T180000Z\nRRULE:FREQ=WEEKLY;UNTIL=20181115T050000Z'
+      'DTSTART=20181031T180000Z\nRRULE:FREQ=WEEKLY;UNTIL=20181115T050000Z',
     )
     expect(rrule.all()).toEqual([
       new Date('2018-10-31T18:00:00.000Z'),
@@ -4221,10 +4221,10 @@ describe('RRule', function () {
     const invalidDate = new Date(undefined)
     const validDate = datetime(2017, 1, 1)
     expect(() => new RRule({ dtstart: invalidDate })).toThrow(
-      'Invalid options: dtstart'
+      'Invalid options: dtstart',
     )
     expect(() => new RRule({ dtstart: validDate, until: invalidDate })).toThrow(
-      'Invalid options: until'
+      'Invalid options: until',
     )
 
     const rule = new RRule({
@@ -4234,16 +4234,16 @@ describe('RRule', function () {
     })
 
     expect(() => rule.after(invalidDate)).toThrow(
-      'Invalid date passed in to RRule.after'
+      'Invalid date passed in to RRule.after',
     )
     expect(() => rule.before(invalidDate)).toThrow(
-      'Invalid date passed in to RRule.before'
+      'Invalid date passed in to RRule.before',
     )
     expect(() => rule.between(invalidDate, validDate)).toThrow(
-      'Invalid date passed in to RRule.between'
+      'Invalid date passed in to RRule.between',
     )
     expect(() => rule.between(validDate, invalidDate)).toThrow(
-      'Invalid date passed in to RRule.between'
+      'Invalid date passed in to RRule.between',
     )
   })
 })

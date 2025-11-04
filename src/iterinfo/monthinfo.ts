@@ -14,7 +14,7 @@ export function rebuildMonth(
   yearlen: number,
   mrange: number[],
   wdaymask: number[],
-  options: ParsedOptions
+  options: ParsedOptions,
 ) {
   const result: MonthInfo = {
     lastyear: year,

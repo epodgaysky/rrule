@@ -124,7 +124,7 @@ const toText = function (
   rrule: RRule,
   gettext?: GetText,
   language?: Language,
-  dateFormatter?: DateFormatter
+  dateFormatter?: DateFormatter,
 ) {
   return new ToText(rrule, gettext, language, dateFormatter).toString()
 }

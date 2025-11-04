@@ -125,7 +125,7 @@ export class RRule implements QueryMethods {
   static optionsToString = optionsToString
 
   protected _iter<M extends QueryMethodTypes>(
-    iterResult: IterResult<M>
+    iterResult: IterResult<M>,
   ): IterResultType<M> {
     return iter(iterResult, this.options, this.origOptions)
   }
@@ -138,7 +138,7 @@ export class RRule implements QueryMethods {
   public _cacheAdd(
     what: CacheKeys | 'all',
     value: Date[] | Date | null,
-    args?: Partial<IterArgs>
+    args?: Partial<IterArgs>,
   ) {
     if (!this._cache) return
     return this._cache._cacheAdd(what, value, args)
@@ -182,7 +182,7 @@ export class RRule implements QueryMethods {
     after: Date,
     before: Date,
     inc = false,
-    iterator?: (d: Date, len: number) => boolean
+    iterator?: (d: Date, len: number) => boolean,
   ): Date[] {
     if (!isValidDate(after) || !isValidDate(before)) {
       throw new Error('Invalid date passed in to RRule.between')
@@ -271,7 +271,7 @@ export class RRule implements QueryMethods {
   toText(
     gettext?: GetText,
     language?: Language,
-    dateFormatter?: DateFormatter
+    dateFormatter?: DateFormatter,
   ) {
     return toText(this, gettext, language, dateFormatter)
   }

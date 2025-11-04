@@ -193,7 +193,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
           const wkd = decodeWKD() as keyof typeof RRule
           if (!wkd) {
             throw new Error(
-              'Unexpected symbol ' + ttr.symbol + ', expected weekday'
+              'Unexpected symbol ' + ttr.symbol + ', expected weekday',
             )
           }
 
@@ -229,7 +229,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
           const m = decodeM()
           if (!m) {
             throw new Error(
-              'Unexpected symbol ' + ttr.symbol + ', expected month'
+              'Unexpected symbol ' + ttr.symbol + ', expected month',
             )
           }
 
@@ -264,7 +264,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
           ttr.nextSymbol()
           if (!options.byweekday) options.byweekday = [] as ByWeekday[]
           ;(options.byweekday as ByWeekday[]).push(
-            RRule[wkd as WeekdayStr].nth(nth)
+            RRule[wkd as WeekdayStr].nth(nth),
           )
         } else {
           if (!options.bymonthday) options.bymonthday = [] as number[]
@@ -286,7 +286,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
         let n = ttr.acceptNumber()
         if (!n) {
           throw new Error(
-            'Unexpected symbol ' + ttr.symbol + ', expected week number'
+            'Unexpected symbol ' + ttr.symbol + ', expected week number',
           )
         }
         options.byweekno = [parseInt(n[0], 10)]
@@ -294,7 +294,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
           n = ttr.acceptNumber()
           if (!n) {
             throw new Error(
-              'Unexpected symbol ' + ttr.symbol + '; expected monthday'
+              'Unexpected symbol ' + ttr.symbol + '; expected monthday',
             )
           }
           options.byweekno.push(parseInt(n[0], 10))
@@ -415,7 +415,7 @@ export default function parseText(text: string, language: Language = ENGLISH) {
       nth = decodeNTH()
       if (!nth) {
         throw new Error(
-          'Unexpected symbol ' + ttr.symbol + '; expected monthday'
+          'Unexpected symbol ' + ttr.symbol + '; expected monthday',
         )
       }
 

@@ -36,6 +36,9 @@ importers:
       nyc:
         specifier: ^15.1.0
         version: 15.1.0
+      oxfmt:
+        specifier: ^0.9.0
+        version: 0.9.0
       rimraf:
         specifier: ^6.1.0
         version: 6.1.0
@@ -337,6 +340,46 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@oxfmt/darwin-arm64@0.9.0':
+    resolution: {integrity: sha512-1D9z55GMMqceq3VT0rNVQjBGanXvwMoNUmkDyXxcigfu+qSVt+qmcJbZwttJfGx9GSlR+ilnAxHODLdcfSShMQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxfmt/darwin-x64@0.9.0':
+    resolution: {integrity: sha512-WI/2AsQz058vcpPCcLk3R5gFBlS3kWrzZGGlZq8UljB8Jzn8/OH6+UEZxiDsFJd/ilbBxPpgAgPxna3z8Is4bw==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxfmt/linux-arm64-gnu@0.9.0':
+    resolution: {integrity: sha512-Sj/mbXJZ1vtCvGcmond5zfW69TA1xFLkDl99aje4JazyMsrEK1PdknJClFKfVIBVPNzxfWa/DixAjFzbJoNQ7A==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxfmt/linux-arm64-musl@0.9.0':
+    resolution: {integrity: sha512-t1+MPQ6xkw6Xy0aNsviunHqnUWKrUgIskR+x4OLUSs+ZxzS2HPqTrYzQJWJp/2wq4lHpF4NsfNBkmXq751YA6A==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxfmt/linux-x64-gnu@0.9.0':
+    resolution: {integrity: sha512-/jn3JBBFZb3rw0L+ZazDi757a7/fsI7bxHKUeSLegt4Jlu3EvG1h+zMG5ETsVE0f8ULAuwjsYA/ujGOQxzHRNQ==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxfmt/linux-x64-musl@0.9.0':
+    resolution: {integrity: sha512-K10t6rNnogmytxbBmdcJnZnSH34kMvTbKI7Kyi0AKv9v7hKUm1kE9hq9VmNyo0KLuu+YYDIMxmQ3Mm5DY2wLyg==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxfmt/win32-arm64@0.9.0':
+    resolution: {integrity: sha512-IaVN68uowQThhSkbtfKo9Hm4I/y3WHom115tYUXeR6NMi/JDTrBpcrF7v0Tg6b6LbpT6LeXSYVr2cO2IVQwF5A==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxfmt/win32-x64@0.9.0':
+    resolution: {integrity: sha512-77OiFJ9lpc7ICmHMSN+belxHPDMOu9U7N/LEp40YuC219QWClt6E5Ved6GwNV5bsDCTxTrpH1/3LhxBNKC66Xg==}
+    cpu: [x64]
+    os: [win32]
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -1265,6 +1308,11 @@ packages:
   onetime@5.1.2:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
+
+  oxfmt@0.9.0:
+    resolution: {integrity: sha512-RVMw8kqZjCDCFxBZyDK4VW8DHxmSHV0pRky7LoLq9JL3ge4kelT0UB8GS0nVTZIteqOJ9rfwPxSZRUVXSX/n0w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
 
   p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -2216,6 +2264,30 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+    optional: true
+
+  '@oxfmt/darwin-arm64@0.9.0':
+    optional: true
+
+  '@oxfmt/darwin-x64@0.9.0':
+    optional: true
+
+  '@oxfmt/linux-arm64-gnu@0.9.0':
+    optional: true
+
+  '@oxfmt/linux-arm64-musl@0.9.0':
+    optional: true
+
+  '@oxfmt/linux-x64-gnu@0.9.0':
+    optional: true
+
+  '@oxfmt/linux-x64-musl@0.9.0':
+    optional: true
+
+  '@oxfmt/win32-arm64@0.9.0':
+    optional: true
+
+  '@oxfmt/win32-x64@0.9.0':
     optional: true
 
   '@sinclair/typebox@0.27.8': {}
@@ -3412,6 +3484,17 @@ snapshots:
   onetime@5.1.2:
     dependencies:
       mimic-fn: 2.1.0
+
+  oxfmt@0.9.0:
+    optionalDependencies:
+      '@oxfmt/darwin-arm64': 0.9.0
+      '@oxfmt/darwin-x64': 0.9.0
+      '@oxfmt/linux-arm64-gnu': 0.9.0
+      '@oxfmt/linux-arm64-musl': 0.9.0
+      '@oxfmt/linux-x64-gnu': 0.9.0
+      '@oxfmt/linux-x64-musl': 0.9.0
+      '@oxfmt/win32-arm64': 0.9.0
+      '@oxfmt/win32-x64': 0.9.0
 
   p-limit@2.3.0:
     dependencies:

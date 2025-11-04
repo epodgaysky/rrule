@@ -54,7 +54,7 @@ describe('NLP', () => {
       const text = item[0]
       const str = item[1]
       expect(RRule.fromString(str).toText().toLowerCase()).toBe(
-        text.toLowerCase()
+        text.toLowerCase(),
       )
     })
   })
@@ -131,7 +131,7 @@ describe('NLP', () => {
       `${day}. ${month}, ${year}`
 
     expect(rrule.toText(undefined, undefined, dateFormatter)).toBe(
-      'every week until 10. November, 2012'
+      'every week until 10. November, 2012',
     )
   })
 })

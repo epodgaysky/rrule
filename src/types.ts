@@ -25,7 +25,7 @@ export enum Frequency {
 }
 
 export function freqIsDailyOrGreater(
-  freq: Frequency
+  freq: Frequency,
 ): freq is
   | Frequency.YEARLY
   | Frequency.MONTHLY

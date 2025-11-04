@@ -38,7 +38,7 @@ describe('RRuleSet', function () {
           count: 2,
           byweekday: RRule.TU,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.rrule(
         new RRule({
@@ -46,7 +46,7 @@ describe('RRuleSet', function () {
           count: 1,
           byweekday: RRule.TH,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return set
     },
@@ -54,7 +54,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -68,7 +68,7 @@ describe('RRuleSet', function () {
           count: 1,
           byweekday: RRule.TU,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.rdate(datetime(1997, 9, 4, 9))
       set.rdate(datetime(1997, 9, 9, 9))
@@ -78,7 +78,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -92,7 +92,7 @@ describe('RRuleSet', function () {
           count: 6,
           byweekday: [RRule.TU, RRule.TH],
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exrule(
         new RRule({
@@ -100,7 +100,7 @@ describe('RRuleSet', function () {
           count: 3,
           byweekday: RRule.TH,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return set
     },
@@ -108,7 +108,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 9, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -122,7 +122,7 @@ describe('RRuleSet', function () {
           count: 6,
           byweekday: [RRule.TU, RRule.TH],
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exdate(datetime(1997, 9, 4, 9))
       set.exdate(datetime(1997, 9, 11, 9))
@@ -133,7 +133,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 9, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -147,7 +147,7 @@ describe('RRuleSet', function () {
           count: 5,
           bymonthday: 10,
           dtstart: parse('20040101T090000'),
-        })
+        }),
       )
       set.exdate(datetime(2004, 4, 10, 9, 0))
       set.exdate(datetime(2004, 2, 10, 9, 0))
@@ -157,7 +157,7 @@ describe('RRuleSet', function () {
       datetime(2004, 1, 10, 9, 0),
       datetime(2004, 3, 10, 9, 0),
       datetime(2004, 5, 10, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -180,7 +180,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 9, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -200,7 +200,7 @@ describe('RRuleSet', function () {
           count: 3,
           byweekday: RRule.TH,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return set
     },
@@ -208,7 +208,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 9, 9, 0),
       datetime(1997, 9, 16, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -222,7 +222,7 @@ describe('RRuleSet', function () {
           count: 2,
           byweekday: RRule.TU,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.rrule(
         new RRule({
@@ -230,7 +230,7 @@ describe('RRuleSet', function () {
           count: 1,
           byweekday: RRule.TH,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return set
     },
@@ -238,7 +238,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -252,7 +252,7 @@ describe('RRuleSet', function () {
           count: 2,
           byweekday: RRule.TU,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.rrule(
         new RRule({
@@ -260,7 +260,7 @@ describe('RRuleSet', function () {
           count: 1,
           byweekday: RRule.TH,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.all()
       return set
@@ -269,7 +269,7 @@ describe('RRuleSet', function () {
       datetime(1997, 9, 2, 9, 0),
       datetime(1997, 9, 4, 9, 0),
       datetime(1997, 9, 9, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -281,14 +281,14 @@ describe('RRuleSet', function () {
         new RRule({
           freq: RRule.YEARLY,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exrule(
         new RRule({
           freq: RRule.YEARLY,
           count: 10,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
 
       return {
@@ -305,7 +305,7 @@ describe('RRuleSet', function () {
       datetime(2007, 9, 2, 9, 0),
       datetime(2008, 9, 2, 9, 0),
       datetime(2009, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -317,14 +317,14 @@ describe('RRuleSet', function () {
         new RRule({
           freq: RRule.YEARLY,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exrule(
         new RRule({
           freq: RRule.YEARLY,
           count: 10,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return {
         rrule: set,
@@ -336,7 +336,7 @@ describe('RRuleSet', function () {
       datetime(2007, 9, 2, 9, 0),
       datetime(2008, 9, 2, 9, 0),
       datetime(2009, 9, 2, 9, 0),
-    ]
+    ],
   )
 
   testRecurring(
@@ -348,14 +348,14 @@ describe('RRuleSet', function () {
         new RRule({
           freq: RRule.YEARLY,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exrule(
         new RRule({
           freq: RRule.YEARLY,
           count: 10,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return {
         rrule: set,
@@ -363,7 +363,7 @@ describe('RRuleSet', function () {
         args: [datetime(2015, 9, 2, 9, 0), false],
       }
     },
-    [datetime(2014, 9, 2, 9, 0)]
+    [datetime(2014, 9, 2, 9, 0)],
   )
 
   testRecurring(
@@ -375,14 +375,14 @@ describe('RRuleSet', function () {
         new RRule({
           freq: RRule.YEARLY,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       set.exrule(
         new RRule({
           freq: RRule.YEARLY,
           count: 10,
           dtstart: parse('19970902T090000'),
-        })
+        }),
       )
       return {
         rrule: set,
@@ -390,7 +390,7 @@ describe('RRuleSet', function () {
         args: [datetime(2000, 9, 2, 9, 0), false],
       }
     },
-    [datetime(2007, 9, 2, 9, 0)]
+    [datetime(2007, 9, 2, 9, 0)],
   )
 
   testRecurring(
@@ -403,14 +403,14 @@ describe('RRuleSet', function () {
           freq: RRule.YEARLY,
           count: 2,
           dtstart: parse('19600101T090000'),
-        })
+        }),
       )
       return {
         rrule: set,
         method: 'all',
       }
     },
-    [datetime(1960, 1, 1, 9, 0), datetime(1961, 1, 1, 9, 0)]
+    [datetime(1960, 1, 1, 9, 0), datetime(1961, 1, 1, 9, 0)],
   )
 
   describe('valueOf', () => {
@@ -422,7 +422,7 @@ describe('RRuleSet', function () {
           freq: RRule.YEARLY,
           count: 2,
           dtstart: parse('19600101T090000'),
-        })
+        }),
       )
 
       expect(set.valueOf()).toEqual([
@@ -439,14 +439,14 @@ describe('RRuleSet', function () {
           freq: RRule.YEARLY,
           count: 2,
           dtstart: parse('19600101T090000'),
-        })
+        }),
       )
 
       set.rrule(
         new RRule({
           freq: RRule.WEEKLY,
           count: 3,
-        })
+        }),
       )
 
       expect(set.valueOf()).toEqual([
@@ -465,14 +465,14 @@ describe('RRuleSet', function () {
           count: 2,
           dtstart: parse('19600101T090000'),
           tzid: 'America/New_York',
-        })
+        }),
       )
 
       set.rrule(
         new RRule({
           freq: RRule.WEEKLY,
           count: 3,
-        })
+        }),
       )
 
       expect(set.valueOf()).toEqual([
@@ -491,7 +491,7 @@ describe('RRuleSet', function () {
           count: 2,
           dtstart: parse('19600101T090000'),
           tzid: 'America/New_York',
-        })
+        }),
       )
 
       set.rdate(parse('19610201T090000'))
@@ -515,7 +515,7 @@ describe('RRuleSet', function () {
       set.rdate(parse('19610301T090000'))
 
       expect(set.toString()).toEqual(
-        'RDATE;TZID=America/New_York:19610201T090000,19610301T090000'
+        'RDATE;TZID=America/New_York:19610201T090000,19610301T090000',
       )
     })
 
@@ -533,7 +533,7 @@ describe('RRuleSet', function () {
 
     it('parses RDATE strings without an RRULE', () => {
       const set = rrulestr(
-        'RDATE;TZID=America/New_York:19610201T090000,19610301T090000'
+        'RDATE;TZID=America/New_York:19610201T090000,19610301T090000',
       ) as RRuleSet
       expect(set).toBeInstanceOf(RRuleSet)
       expect(set.tzid()).toBe('America/New_York')
@@ -548,7 +548,7 @@ describe('RRuleSet', function () {
           count: 2,
           dtstart: parse('19600101T090000'),
           tzid: 'America/New_York',
-        })
+        }),
       )
 
       set.exdate(parse('19610201T090000'))
@@ -575,7 +575,7 @@ describe('RRuleSet', function () {
           count: 4,
           dtstart: datetime(2000, 1, 1, 9, 0, 0),
           tzid: targetZone,
-        })
+        }),
       )
 
       set.exdate(datetime(2001, 1, 1, 9, 0, 0))
@@ -586,22 +586,22 @@ describe('RRuleSet', function () {
         expectedDate(
           datetime(2000, 1, 1, 9, 0, 0),
           currentLocalDate,
-          targetZone
+          targetZone,
         ),
         expectedDate(
           datetime(2002, 1, 1, 9, 0, 0),
           currentLocalDate,
-          targetZone
+          targetZone,
         ),
         expectedDate(
           datetime(2002, 3, 1, 9, 0, 0),
           currentLocalDate,
-          targetZone
+          targetZone,
         ),
         expectedDate(
           datetime(2003, 1, 1, 9, 0, 0),
           currentLocalDate,
-          targetZone
+          targetZone,
         ),
       ])
 
@@ -617,12 +617,12 @@ describe('RRuleSet', function () {
         'RDATE;TZID=America/Los_Angeles:20101110T100000',
       ])
       expect(set.toString()).toBe(
-        'RDATE;TZID=America/Los_Angeles:20101110T100000'
+        'RDATE;TZID=America/Los_Angeles:20101110T100000',
       )
 
       const set2 = rrulestr(set.toString())
       expect(set2.toString()).toBe(
-        'RDATE;TZID=America/Los_Angeles:20101110T100000'
+        'RDATE;TZID=America/Los_Angeles:20101110T100000',
       )
     })
 
@@ -641,7 +641,7 @@ describe('RRuleSet', function () {
         expectedDate(
           new Date(Date.parse('2002-03-01T09:00:00')),
           currentLocalDate,
-          targetZone
+          targetZone,
         ),
       ])
 
@@ -695,7 +695,7 @@ describe('RRuleSet', function () {
         [
           'DTSTART:20171201T080000Z',
           'RRULE:FREQ=WEEKLY;UNTIL=20171224T235959Z',
-        ].join('\n')
+        ].join('\n'),
       )
     })
 
@@ -712,7 +712,7 @@ describe('RRuleSet', function () {
         [
           'DTSTART:20171201T080000Z',
           'RRULE:FREQ=WEEKLY;UNTIL=20171224T235959Z',
-        ].join('\n')
+        ].join('\n'),
       )
     })
 
@@ -729,13 +729,13 @@ describe('RRuleSet', function () {
         [
           'DTSTART;TZID=America/New_York:20171201T080000',
           'RRULE:FREQ=WEEKLY;UNTIL=20171224T235959',
-        ].join('\n')
+        ].join('\n'),
       )
     })
 
     const updateWithEndDate = (
       recurrence: string[],
-      updatedCursor: Date
+      updatedCursor: Date,
     ): string => {
       const oneDay = 24 * 60 * 60 * 1000
       const oneDayEarlier = new Date(updatedCursor.getTime() - oneDay)
@@ -746,8 +746,8 @@ describe('RRuleSet', function () {
           oneDayEarlier.getUTCDate(),
           23,
           59,
-          59
-        )
+          59,
+        ),
       )
 
       const rrule = rrulestr(recurrence.join('\n'))
@@ -765,7 +765,7 @@ describe('RRuleSet', function () {
 
     const amendRuleSetWithExceptionDate = (
       recurrence: string[],
-      cursor: Date
+      cursor: Date,
     ): string => {
       const ruleSet = rrulestr(recurrence.join('\n'), {
         forceset: true,
@@ -776,7 +776,7 @@ describe('RRuleSet', function () {
 
     const amendRuleSetWithExceptionRule = (
       recurrence: string[],
-      exrule: RRule
+      exrule: RRule,
     ): string => {
       const ruleSet = rrulestr(recurrence.join('\n'), {
         forceset: true,
@@ -816,7 +816,7 @@ describe('RRuleSet', function () {
         count: 1,
         dtstart: parse('19970902T090000'),
         tzid: 'America/Unknown',
-      })
+      }),
     )
     set.exdate(parse('19970902T090000'))
 

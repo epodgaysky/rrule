@@ -12,7 +12,7 @@ export class Time {
     hour: number,
     minute: number,
     second: number,
-    millisecond: number
+    millisecond: number,
   ) {
     this.hour = hour
     this.minute = minute
@@ -57,7 +57,7 @@ export class DateTime extends Time {
       date.getUTCHours(),
       date.getUTCMinutes(),
       date.getUTCSeconds(),
-      date.valueOf() % 1000
+      date.valueOf() % 1000,
     )
   }
 
@@ -68,7 +68,7 @@ export class DateTime extends Time {
     hour: number,
     minute: number,
     second: number,
-    millisecond: number
+    millisecond: number,
   ) {
     super(hour, minute, second, millisecond)
     this.year = year
@@ -89,8 +89,8 @@ export class DateTime extends Time {
         this.hour,
         this.minute,
         this.second,
-        this.millisecond
-      )
+        this.millisecond,
+      ),
     ).getTime()
   }
 
@@ -161,7 +161,7 @@ export class DateTime extends Time {
     minutes: number,
     filtered: boolean,
     byhour: number[],
-    byminute: number[]
+    byminute: number[],
   ) {
     if (filtered) {
       // Jump to one iteration before next day
@@ -191,14 +191,14 @@ export class DateTime extends Time {
     filtered: boolean,
     byhour: number[],
     byminute: number[],
-    bysecond: number[]
+    bysecond: number[],
   ) {
     if (filtered) {
       // Jump to one iteration before next day
       this.second +=
         Math.floor(
           (86399 - (this.hour * 3600 + this.minute * 60 + this.second)) /
-            seconds
+            seconds,
         ) * seconds
     }
 

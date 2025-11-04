@@ -46,7 +46,7 @@ export function optionsToString(options: Partial<Options>) {
           */
         key = 'BYDAY'
         outValue = toArray<Weekday | number[] | number>(
-          value as Weekday | number[] | number
+          value as Weekday | number[] | number,
         )
           .map((wday) => {
             if (wday instanceof Weekday) {

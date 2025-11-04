@@ -9,7 +9,7 @@ export const datetime = function (
   d: number,
   h = 0,
   i = 0,
-  s = 0
+  s = 0,
 ) {
   return new Date(Date.UTC(y, m - 1, d, h, i, s))
 }
@@ -56,12 +56,12 @@ export const getYearDay = function (date: Date) {
   const dateNoTime = new Date(
     date.getUTCFullYear(),
     date.getUTCMonth(),
-    date.getUTCDate()
+    date.getUTCDate(),
   )
   return (
     Math.ceil(
       (dateNoTime.valueOf() - new Date(date.getUTCFullYear(), 0, 1).valueOf()) /
-        ONE_DAY
+        ONE_DAY,
     ) + 1
   )
 }
@@ -150,8 +150,8 @@ export const combine = function (date: Date, time: Date | Time) {
       time.getHours(),
       time.getMinutes(),
       time.getSeconds(),
-      time.getMilliseconds()
-    )
+      time.getMilliseconds(),
+    ),
   )
 }
 
@@ -204,8 +204,8 @@ export const untilStringToDate = function (until: string) {
       parseInt(bits[3], 10),
       parseInt(bits[5], 10) || 0,
       parseInt(bits[6], 10) || 0,
-      parseInt(bits[7], 10) || 0
-    )
+      parseInt(bits[7], 10) || 0,
+    ),
   )
 }
 
