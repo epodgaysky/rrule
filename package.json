@@ -25,8 +25,7 @@
     "test": "nyc jest **/*.test.ts"
   },
   "dependencies": {
-    "luxon": "^3.7.2",
-    "tslib": "^2.4.0"
+    "luxon": "^3.7.2"
   },
   "devDependencies": {
     "@types/assert": "^1.4.3",
