@@ -1,7 +1,9 @@
 {
-  "name": "rrule",
-  "version": "2.8.0",
+  "name": "@taskworld/rrule",
+  "version": "3.0.0",
   "description": "JavaScript library for working with recurrence rules for calendar dates.",
+  "repository": "git://github.com/taskworld/rrule.git",
+  "author": "Jakub Roztocil, Lars Schöning, David Golightly, and Taskworld",
   "homepage": "http://jakubroztocil.github.io/rrule/",
   "license": "BSD-3-Clause",
   "keywords": [
@@ -11,31 +13,20 @@
     "icalendar",
     "rfc"
   ],
-  "author": "Jakub Roztocil, Lars Schöning, and David Golightly",
-  "main": "dist/es5/rrule.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jakubroztocil/rrule.git"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
     "test": "nyc jest **/*.test.ts"
   },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "html"
-    ],
-    "all": true
+  "dependencies": {
+    "luxon": "^3.7.2",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@types/assert": "^1.4.3",
@@ -50,12 +41,17 @@
     "ts-jest": "^29.1.1",
     "typescript": "^5.9.3"
   },
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "dependencies": {
-    "luxon": "^3.7.2",
-    "tslib": "^2.4.0"
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
   }
 }
