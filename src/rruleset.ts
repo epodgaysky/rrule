@@ -1,11 +1,11 @@
-import { RRule } from './rrule'
 import { sort, timeToUntilString } from './dateutil'
 import { includes } from './helpers'
 import IterResult from './iterresult'
 import { iterSet } from './iterset'
-import { QueryMethodTypes, IterResultType } from './types'
-import { rrulestr } from './rrulestr'
 import { optionsToString } from './optionstostring'
+import { RRule } from './rrule'
+import { rrulestr } from './rrulestr'
+import { IterResultType, QueryMethodTypes } from './types'
 
 function createGetterSetter<T>(fieldName: string) {
   return (field?: T) => {
@@ -156,7 +156,7 @@ export class RRuleSet extends RRule {
           .toString()
           .split('\n')
           .map((line) => line.replace(/^RRULE:/, 'EXRULE:'))
-          .filter((line) => !/^DTSTART/.test(line)),
+          .filter((line) => !line.startsWith('DTSTART')),
       )
     })
 

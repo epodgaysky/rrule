@@ -1,6 +1,6 @@
 export { datetime } from '../../src/dateutil'
-import { dateInTimeZone, datetime } from '../../src/dateutil'
 import { RRule, RRuleSet } from '../../src'
+import { dateInTimeZone, datetime } from '../../src/dateutil'
 
 export const TEST_CTX = {
   ALSO_TESTSTRING_FUNCTIONS: false,
@@ -198,8 +198,13 @@ export const testRecurring = function (
           assertDatesEqual(rule.before(date, true), date)
 
           // Test after() and before() with inc=false.
-          next && assertDatesEqual(rule.after(date, false), next)
-          prev && assertDatesEqual(rule.before(date, false), prev)
+          if (next) {
+            assertDatesEqual(rule.after(date, false), next!)
+          }
+
+          if (prev) {
+            assertDatesEqual(rule.before(date, false), prev!)
+          }
         }
       }
     }
