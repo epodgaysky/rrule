@@ -1,16 +1,16 @@
 import {
+  clone,
+  divmod,
   empty,
   includes,
+  isArray,
+  isPresent,
   pymod,
-  divmod,
-  split,
-  clone,
   range,
   repeat,
-  isPresent,
-  isArray,
+  split,
 } from '../src/helpers'
-import { isNumber } from 'util'
+import { isNumber } from './lib/utils'
 
 describe('isPresent', () => {
   it('is false if object is null', () => {

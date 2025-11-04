@@ -9,6 +9,10 @@ export const TEST_CTX = {
   ALSO_TESTSUBSECOND_PRECISION: false,
 }
 
+export function isNumber(maybeNumber: any): maybeNumber is number {
+  return typeof maybeNumber === 'number' && isFinite(maybeNumber)
+}
+
 const assertDatesEqual = function (
   actual: Date | Date[],
   expected: Date | Date[]
