@@ -2,7 +2,7 @@ import { DateTime, DurationUnit } from 'luxon'
 
 import { Frequency, Options, ParsedOptions, QueryMethodTypes } from '../types'
 import IterResult from '../iterresult'
-import { notEmpty } from '../helpers'
+import { empty, notEmpty } from '../helpers'
 import { Weekday } from '../weekday'
 
 const UNIT_BY_FREQUENCY: Record<Frequency, Required<DurationUnit>> = {
@@ -97,6 +97,7 @@ export function optimiseOptions<M extends QueryMethodTypes>(
     (!minDate && !maxDate) ||
     (minDate && minDate <= dtstart) ||
     (maxDate && maxDate <= dtstart) ||
+    empty(freq) ||
     notEmpty(bymonth) ||
     notEmpty(bysetpos) ||
     notEmpty(bymonthday) ||
